@@ -54,7 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         </tr>
                         </thead>
                         <tbody>
-                        <? foreach($offers as $offer){ ?>
+
+                        <?
+                        foreach($offers as $offer){ ?>
                         <tr>
                             <td><a href="#"><?= $offer->title ?></a></td>
                             <td><?= $offer->action->title ?></td>

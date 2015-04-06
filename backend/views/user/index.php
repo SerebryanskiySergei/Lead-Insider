@@ -69,6 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			'surname',
 			'phone',
 			'balance',
+			'ref',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'urlCreator' => function($action, $model, $key, $index) {

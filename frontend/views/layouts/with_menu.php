@@ -123,7 +123,7 @@ $bundle = AppAsset::register($this);
                 </li>-->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="<?=$bundle->baseUrl?>/img/avatars/5.jpg" alt="avatar" class="mw30 br64 mr15">
-                        <span>John.Smith</span>
+                        <span><?=\common\models\User::findOne(Yii::$app->user->getId())->username?></span>
                         <span class="caret caret-tp"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-persist pn w250 bg-white" role="menu">
@@ -151,13 +151,13 @@ $bundle = AppAsset::register($this);
                 <ul class="nav sidebar-menu">
                     <li class="sidebar-label pt20">Панель управления</li>
                     <li>
-                        <a href="pages_calendar.html">
+                        <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">
                             <span class="fa fa-database"></span>
                             <span class="sidebar-title">Офферы</span>
                         </a>
                     </li>
                     <li>
-                        <a href="documentation/index.html">
+                        <a href="<?=\yii\helpers\Url::toRoute('user/allstatistic')?>">
                             <span class="fa fa-bar-chart"></span>
                             <span class="sidebar-title">Статистика</span>
                         </a>

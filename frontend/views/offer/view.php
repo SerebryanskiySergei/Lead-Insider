@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = 'View';
                 <h2 style="margin-top:0px;"><?=$model->title?><small> <?=$model->action->title?> </small></h2>
                 <p >Вебсайт: <a href="<?=$model->site?>"><?=$model->site?></a></p>
                 <p >Дата добавления оффера: <?=$model->create_time?></p>
-                <a  style="width:150px;" href="#" class="btn btn-success btn-gradient dark btn-block">Статистика</a>
+                <a  style="width:150px;" href="<?=\yii\helpers\Url::toRoute(['statistic','id'=>$model->id])?>" class="btn btn-success btn-gradient dark btn-block">Статистика</a>
             </div>
         </div>
 
@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = 'View';
                                 <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-bolt"></i>
                                                 </span>
-                                    <input style="width:100%;" type="text"  class="form-control zip" value="Здесь ваша ссылка" readonly>
+                                    <input style="width:100%;" type="text"  class="form-control zip" value="<?=$model->site.'&ref='.$ref.'&action='.$model->action->title.'&region='.$model->region?>" readonly>
                                 </div>
                             </dl>
 

@@ -24,12 +24,13 @@ class UserSearch extends Model
 	public $surname;
 	public $phone;
 	public $balance;
+	public $ref;
 
 	public function rules()
 	{
 		return [
 			[['id', 'status', 'created_at', 'updated_at'], 'integer'],
-			[['username', 'password_hash', 'auth_key', 'password_reset_token', 'email', 'name', 'surname', 'phone'], 'safe'],
+			[['username', 'password_hash', 'auth_key', 'password_reset_token', 'email', 'name', 'surname', 'phone', 'ref'], 'safe'],
 			[['balance'], 'number'],
 		];
 	}
@@ -53,6 +54,7 @@ class UserSearch extends Model
 			'surname' => 'Фамилия',
 			'phone' => 'Телефон',
 			'balance' => 'Balance',
+			'ref' => 'Ref',
 		];
 	}
 
@@ -82,7 +84,8 @@ class UserSearch extends Model
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'surname', $this->surname])
-            ->andFilterWhere(['like', 'phone', $this->phone]);
+            ->andFilterWhere(['like', 'phone', $this->phone])
+            ->andFilterWhere(['like', 'ref', $this->ref]);
 
 		return $dataProvider;
 	}

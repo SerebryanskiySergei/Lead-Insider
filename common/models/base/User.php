@@ -20,6 +20,7 @@ use Yii;
  * @property string $surname
  * @property string $phone
  * @property double $balance
+ * @property string $ref
  *
  * @property Payment[] $payments
  */
@@ -39,10 +40,10 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password_hash', 'auth_key', 'email', 'created_at', 'updated_at'], 'required'],
+            [['username', 'password_hash', 'auth_key', 'email', 'created_at', 'updated_at', 'ref'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['balance'], 'number'],
-            [['username', 'password_hash', 'password_reset_token', 'email', 'name', 'surname', 'phone'], 'string', 'max' => 255],
+            [['username', 'password_hash', 'password_reset_token', 'email', 'name', 'surname', 'phone', 'ref'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32]
         ];
     }
@@ -66,6 +67,7 @@ class User extends \yii\db\ActiveRecord
             'surname' => Yii::t('app', 'Surname'),
             'phone' => Yii::t('app', 'Phone'),
             'balance' => Yii::t('app', 'Balance'),
+            'ref' => Yii::t('app', 'Ref'),
         ];
     }
 

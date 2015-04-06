@@ -35,6 +35,7 @@ AppAsset::register($this);
                 ['label' => 'Offers', 'url' => ['/offer/index']],
                 ['label' => 'Users', 'url' => ['/user/index']],
                 ['label' => 'Payment', 'url' => ['/payment/index']],
+                ['label' => 'Statistic', 'url' => ['/statistic/index']],
                 ['label' => 'Small tables', 'items'=>[
                     ['label' => 'Типы доступа офферов', 'url' => ['/access-type/index']],
                     ['label' => 'Действия офферов', 'url' => ['/offer-action/index']],

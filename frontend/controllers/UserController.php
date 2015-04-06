@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\Statistic;
 use common\models\User;
 use common\models\UserSearch;
 use yii\web\Controller;
@@ -97,6 +98,10 @@ class UserController extends Controller
 		$this->findModel($id)->delete();
 		return $this->redirect(Url::previous());
 	}
+    public function actionAllstatistic(){
+        $statistic= Statistic::find()->where(['user_ref_id'=>\Yii::$app->user->id])->all();
+        return $this->render('statistic',['statistic'=>$statistic]);
+    }
 
 	/**
 	 * Finds the User model based on its primary key value.
