@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /**
 * @var yii\web\View $this
 * @var yii\data\ActiveDataProvider $dataProvider
-* @var common\OfferSearch $searchModel
+* @var common\models\OfferSearch $searchModel
 */
 
 $this->title = 'Offers';
@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			/*'traff_8'*/
 			/*'traff_9'*/
 			/*'traff_10'*/
-			/*'fraff_11'*/
+			/*'traff_11'*/
 			/*'create_time'*/
             [
                 'class' => 'yii\grid\ActionColumn',

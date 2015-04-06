@@ -19,7 +19,7 @@ class OfferSearch extends Model
 	public $lead;
 	public $hold;
 	public $access_type_id;
-	public $epc;
+	public $cpe;
 	public $postclick;
 	public $site;
 	public $caption;
@@ -33,14 +33,14 @@ class OfferSearch extends Model
 	public $traff_8;
 	public $traff_9;
 	public $traff_10;
-	public $fraff_11;
+	public $traff_11;
 	public $create_time;
 
 	public function rules()
 	{
 		return [
 			[['id', 'action_id', 'hold', 'access_type_id', 'postclick'], 'integer'],
-			[['title', 'region', 'lead', 'epc', 'site', 'caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'fraff_11', 'create_time'], 'safe'],
+			[['title', 'region', 'lead', 'cpe', 'site', 'caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'traff_11', 'create_time'], 'safe'],
 			[['price'], 'number'],
 		];
 	}
@@ -59,7 +59,7 @@ class OfferSearch extends Model
 			'lead' => 'Лид',
 			'hold' => 'Холд',
 			'access_type_id' => 'Тип доступа',
-			'epc' => 'EPC',
+			'cpe' => 'Cpe',
 			'postclick' => 'Постклик',
 			'site' => 'Сайт',
 			'caption' => 'Описание',
@@ -73,7 +73,7 @@ class OfferSearch extends Model
 			'traff_8' => 'Почтовые рассылки',
 			'traff_9' => 'Брокеры',
 			'traff_10' => 'Cashback',
-			'fraff_11' => 'Другое',
+			'traff_11' => 'Другое',
 			'create_time' => 'Дата создания',
 		];
 	}
@@ -102,7 +102,7 @@ class OfferSearch extends Model
 		$query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'region', $this->region])
             ->andFilterWhere(['like', 'lead', $this->lead])
-            ->andFilterWhere(['like', 'epc', $this->epc])
+            ->andFilterWhere(['like', 'cpe', $this->cpe])
             ->andFilterWhere(['like', 'site', $this->site])
             ->andFilterWhere(['like', 'caption', $this->caption])
             ->andFilterWhere(['like', 'traff_1', $this->traff_1])
@@ -115,7 +115,7 @@ class OfferSearch extends Model
             ->andFilterWhere(['like', 'traff_8', $this->traff_8])
             ->andFilterWhere(['like', 'traff_9', $this->traff_9])
             ->andFilterWhere(['like', 'traff_10', $this->traff_10])
-            ->andFilterWhere(['like', 'fraff_11', $this->fraff_11]);
+            ->andFilterWhere(['like', 'traff_11', $this->traff_11]);
 
 		return $dataProvider;
 	}

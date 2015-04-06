@@ -9,7 +9,7 @@ use frontend\widgets\Alert;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-AppAsset::register($this);
+$bundle = AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -40,7 +40,7 @@ AppAsset::register($this);
         <!-- Start: Header -->
         <header class="navbar navbar-fixed-top bg-light">
             <div class="navbar-branding">
-                <a class="navbar-brand" href="dashboard.html"> <b>Lead</b>Insider
+                <a class="navbar-brand" href="<?=\yii\helpers\Url::toRoute('site/index')?>"> <b>Lead</b>Insider
                 </a>
                 <span id="toggle_sidemenu_l" class="glyphicons glyphicons-show_lines"></span>
                 <ul class="nav navbar-nav pull-right hidden">
@@ -122,18 +122,18 @@ AppAsset::register($this);
                 <li class="ph10 pv20"> <i class="fa fa-circle text-tp fs8"></i>
                 </li>-->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="assets/img/avatars/5.jpg" alt="avatar" class="mw30 br64 mr15">
+                    <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="<?=$bundle->baseUrl?>/img/avatars/5.jpg" alt="avatar" class="mw30 br64 mr15">
                         <span>John.Smith</span>
                         <span class="caret caret-tp"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-persist pn w250 bg-white" role="menu">
 
                         <li class="br-t of-h">
-                            <a href="#" class="fw600 p12 animated animated-short fadeInDown">
+                            <a href="<?=\yii\helpers\Url::toRoute(['user/update','id'=>Yii::$app->user->getId()])?>" class="fw600 p12 animated animated-short fadeInDown">
                                 <span class="fa fa-gear pr5"></span> Настройки аккаунта </a>
                         </li>
                         <li class="br-t of-h">
-                            <a href="#" class="fw600 p12 animated animated-short fadeInDown">
+                            <a href="<?=\yii\helpers\Url::toRoute('site/logout')?>" class="fw600 p12 animated animated-short fadeInDown">
                                 <span class="fa fa-power-off pr5"></span> Выйти </a>
                         </li>
                     </ul>

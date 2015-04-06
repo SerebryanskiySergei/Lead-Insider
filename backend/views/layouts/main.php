@@ -32,7 +32,13 @@ AppAsset::register($this);
                 ],
             ]);
             $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'Offers', 'url' => ['/offer/index']],
+                ['label' => 'Users', 'url' => ['/user/index']],
+                ['label' => 'Payment', 'url' => ['/payment/index']],
+                ['label' => 'Small tables', 'items'=>[
+                    ['label' => 'Типы доступа офферов', 'url' => ['/access-type/index']],
+                    ['label' => 'Действия офферов', 'url' => ['/offer-action/index']],
+                ]],
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

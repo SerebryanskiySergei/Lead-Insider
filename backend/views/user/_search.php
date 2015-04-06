@@ -35,6 +35,14 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'updated_at') ?>
 
+		<?php // echo $form->field($model, 'name') ?>
+
+		<?php // echo $form->field($model, 'surname') ?>
+
+		<?php // echo $form->field($model, 'phone') ?>
+
+		<?php // echo $form->field($model, 'balance') ?>
+
 		<div class="form-group">
 			<?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
 			<?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

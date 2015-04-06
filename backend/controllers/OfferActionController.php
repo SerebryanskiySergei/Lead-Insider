@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use common\models\OfferAction;
-use ;
+use backend\models\OfferActionSearch;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\filters\VerbFilter;
@@ -21,7 +21,7 @@ class OfferActionController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$searchModel = new ;
+		$searchModel = new OfferActionSearch;
 		$dataProvider = $searchModel->search($_GET);
 
         Url::remember();

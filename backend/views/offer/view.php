@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = 'View';
     'attribute'=>'access_type_id',
     'value' => ($model->getAccessType()->one() ? Html::a($model->getAccessType()->one()->title, ['access-type/view', 'id' => $model->getAccessType()->one()->id,]) : '<span class="label label-warning">?</span>'),
 ],
-			'epc',
+			'cpe',
 			'postclick',
 			'site',
 			'caption:ntext',
@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = 'View';
 			'traff_8',
 			'traff_9',
 			'traff_10',
-			'fraff_11',
+			'traff_11',
 			'create_time',
     ],
     ]); ?>

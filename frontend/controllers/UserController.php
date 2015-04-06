@@ -15,6 +15,7 @@ use yii\helpers\Url;
  */
 class UserController extends Controller
 {
+    public $layout = 'with_menu';
 	/**
 	 * Lists all User models.
 	 * @return mixed

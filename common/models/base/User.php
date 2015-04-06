@@ -5,7 +5,7 @@ namespace common\models\base;
 use Yii;
 
 /**
- * This is the base-model class for table "User".
+ * This is the base-model class for table "user".
  *
  * @property integer $id
  * @property string $username
@@ -16,6 +16,12 @@ use Yii;
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
+ * @property string $name
+ * @property string $surname
+ * @property string $phone
+ * @property double $balance
+ *
+ * @property Payment[] $payments
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -24,9 +30,22 @@ class User extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'User';
+        return 'user';
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['username', 'password_hash', 'auth_key', 'email', 'created_at', 'updated_at'], 'required'],
+            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['balance'], 'number'],
+            [['username', 'password_hash', 'password_reset_token', 'email', 'name', 'surname', 'phone'], 'string', 'max' => 255],
+            [['auth_key'], 'string', 'max' => 32]
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -43,6 +62,18 @@ class User extends \yii\db\ActiveRecord
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'name' => Yii::t('app', 'Name'),
+            'surname' => Yii::t('app', 'Surname'),
+            'phone' => Yii::t('app', 'Phone'),
+            'balance' => Yii::t('app', 'Balance'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPayments()
+    {
+        return $this->hasMany(\common\models\Payment::className(), ['user_id' => 'id']);
     }
 }

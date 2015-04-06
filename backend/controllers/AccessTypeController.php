@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use common\models\AccessType;
-use ;
+use backend\models\AccessTypeSearch;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\filters\VerbFilter;
@@ -21,7 +21,7 @@ class AccessTypeController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$searchModel = new ;
+		$searchModel = new AccessTypeSearch;
 		$dataProvider = $searchModel->search($_GET);
 
         Url::remember();

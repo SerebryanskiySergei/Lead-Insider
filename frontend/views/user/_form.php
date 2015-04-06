@@ -19,7 +19,6 @@ use yii\bootstrap\ActiveForm;
         <?php $this->beginBlock('main'); ?>
 
         <p>
-            
 			<?= $form->field($model, 'status')->textInput() ?>
         </p>
         <?php $this->endBlock(); ?>

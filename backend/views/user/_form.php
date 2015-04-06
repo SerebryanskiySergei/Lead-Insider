@@ -20,7 +20,10 @@ use yii\bootstrap\ActiveForm;
 
         <p>
             
-			<?= $form->field($model, 'status')->textInput() ?>
+			<?= $form->field($model, 'status')->dropDownList(['10'=>'Активен','0'=>'Удален']) ?>
+			<?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
+			<?= $form->field($model, 'surname')->textInput(['maxlength' => 255]) ?>
+			<?= $form->field($model, 'phone')->textInput(['maxlength' => 255]) ?>
         </p>
         <?php $this->endBlock(); ?>
         

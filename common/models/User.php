@@ -44,6 +44,9 @@ class User extends \common\models\base\User implements IdentityInterface
             'status' => Yii::t('app', 'Активен/Неактивен'),
             'created_at' => Yii::t('app', 'Дата добавления'),
             'updated_at' => Yii::t('app', 'Дата обновления'),
+            'name' => Yii::t('app', 'Имя'),
+            'surname' => Yii::t('app', 'Фамилия'),
+            'phone' => Yii::t('app', 'Телефон'),
         ];
     }
 
@@ -55,6 +58,7 @@ class User extends \common\models\base\User implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            [['name','surname','phone'] , 'string','max'=>'255']
         ];
     }
 

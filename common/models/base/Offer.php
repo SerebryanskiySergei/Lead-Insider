@@ -51,7 +51,7 @@ class Offer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'action_id', 'price', 'region', 'lead', 'hold', 'access_type_id', 'cpe', 'postclick', 'site', 'caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'fraff_11'], 'required'],
+            [['title', 'action_id', 'price', 'region', 'lead', 'hold', 'access_type_id', 'cpe', 'postclick', 'site', 'caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'traff_11'], 'required'],
             [['action_id', 'hold', 'access_type_id', 'postclick'], 'integer'],
             [['price'], 'number'],
             [['caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'traff_11'], 'string'],
@@ -74,7 +74,7 @@ class Offer extends \yii\db\ActiveRecord
             'lead' => Yii::t('app', 'Lead'),
             'hold' => Yii::t('app', 'Hold'),
             'access_type_id' => Yii::t('app', 'Access Type ID'),
-            'cpe' => Yii::t('app', 'cpe'),
+            'cpe' => Yii::t('app', 'Cpe'),
             'postclick' => Yii::t('app', 'Postclick'),
             'site' => Yii::t('app', 'Site'),
             'caption' => Yii::t('app', 'Caption'),
@@ -88,7 +88,7 @@ class Offer extends \yii\db\ActiveRecord
             'traff_8' => Yii::t('app', 'Traff 8'),
             'traff_9' => Yii::t('app', 'Traff 9'),
             'traff_10' => Yii::t('app', 'Traff 10'),
-            'traff_11' => Yii::t('app', 'Fraff 11'),
+            'traff_11' => Yii::t('app', 'Traff 11'),
             'create_time' => Yii::t('app', 'Create Time'),
         ];
     }

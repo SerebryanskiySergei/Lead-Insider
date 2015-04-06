@@ -37,7 +37,7 @@ class AppAsset extends AssetBundle
         'js/bootstrap/holder.min.js',
         'tools/plugins/panels/json2.js',
         'tools/plugins/panels/jquery.ui.touch-punch.min.js',
-        'tools/plugins/panels/adminpanels.js',
+        'tools/plugins/panels/panels.js',
         'js/pages/widgets.js',
         'js/main.js',
         'js/demo.js'

@@ -49,7 +49,7 @@ $form->field($model, 'access_type_id')->dropDownList(
 			<?= $form->field($model, 'traff_8')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
 			<?= $form->field($model, 'traff_9')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
 			<?= $form->field($model, 'traff_10')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
-			<?= $form->field($model, 'fraff_11')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'traff_11')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
 			<?= $form->field($model, 'create_time')->textInput() ?>
         </p>
         <?php $this->endBlock(); ?>

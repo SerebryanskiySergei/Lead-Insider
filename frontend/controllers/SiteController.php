@@ -41,12 +41,6 @@ class SiteController extends Controller
                     ],
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
         ];
     }
 
@@ -68,13 +62,16 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        if(\Yii::$app->user->isGuest)
+            return $this->redirect('site/login');
+        else
+            return $this->redirect('offer/index');
     }
 
     public function actionLogin()
     {
         if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect('offer/index');
         }
 
         $model = new LoginForm();

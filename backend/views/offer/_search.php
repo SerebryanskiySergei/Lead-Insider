@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 
 /**
  * @var yii\web\View $this
- * @var common\OfferSearch $model
+ * @var common\models\OfferSearch $model
  * @var yii\widgets\ActiveForm $form
  */
 ?>
@@ -61,7 +61,7 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'traff_10') ?>
 
-		<?php // echo $form->field($model, 'fraff_11') ?>
+		<?php // echo $form->field($model, 'traff_11') ?>
 
 		<?php // echo $form->field($model, 'create_time') ?>
 

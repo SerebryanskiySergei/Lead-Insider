@@ -20,12 +20,17 @@ class UserSearch extends Model
 	public $status;
 	public $created_at;
 	public $updated_at;
+	public $name;
+	public $surname;
+	public $phone;
+	public $balance;
 
 	public function rules()
 	{
 		return [
 			[['id', 'status', 'created_at', 'updated_at'], 'integer'],
-			[['username', 'password_hash', 'auth_key', 'password_reset_token', 'email'], 'safe'],
+			[['username', 'password_hash', 'auth_key', 'password_reset_token', 'email', 'name', 'surname', 'phone'], 'safe'],
+			[['balance'], 'number'],
 		];
 	}
 
@@ -44,6 +49,10 @@ class UserSearch extends Model
 			'status' => 'Активен/Неактивен',
 			'created_at' => 'Дата добавления',
 			'updated_at' => 'Дата обновления',
+			'name' => 'Имя',
+			'surname' => 'Фамилия',
+			'phone' => 'Телефон',
+			'balance' => 'Balance',
 		];
 	}
 
@@ -63,13 +72,17 @@ class UserSearch extends Model
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'balance' => $this->balance,
         ]);
 
 		$query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
-            ->andFilterWhere(['like', 'email', $this->email]);
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'surname', $this->surname])
+            ->andFilterWhere(['like', 'phone', $this->phone]);
 
 		return $dataProvider;
 	}
