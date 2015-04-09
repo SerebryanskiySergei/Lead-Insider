@@ -25,27 +25,36 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => 'Lead.Inside',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
             $menuItems = [
-                ['label' => 'Offers', 'url' => ['/offer/index']],
-                ['label' => 'Users', 'url' => ['/user/index']],
-                ['label' => 'Payment', 'url' => ['/payment/index']],
-                ['label' => 'Statistic', 'url' => ['/statistic/index']],
-                ['label' => 'Small tables', 'items'=>[
+                ['label' => 'Офферы', 'url' => ['/offer/index']],
+                ['label' => 'Пользователи', 'url' => ['/user/index']],
+                ['label' => 'Выплаты', 'url' => ['/payment/index']],
+                ['label' => 'Статистика', 'items'=>[
+                    ['label' => 'Информация по статистике', 'url' => ['/statistic/index']],
+                    ['label' => 'Заполненные данные', 'url' => ['/statistic-data/index']],
+                ]],
+                ['label' => 'Тикеты', 'items'=>[
+                    ['label' => 'Все тикеты', 'url' => ['/ticket/index']],
+                    ['label' => 'Все комментарии', 'url' => ['/ticket-comment/index']],
+                ]],
+                ['label' => 'Доп. таблицы', 'items'=>[
                     ['label' => 'Типы доступа офферов', 'url' => ['/access-type/index']],
                     ['label' => 'Действия офферов', 'url' => ['/offer-action/index']],
+                    ['label' => 'Регионы', 'url' => ['/region/index']],
+                    ['label' => 'Бекапы', 'url' => ['backuprestore/default/']],
                 ]],
             ];
             if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+                $menuItems[] = ['label' => 'Войти', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'label' => 'Выйти (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
@@ -67,8 +76,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; Lead.Inside <?= date('Y') ?></p>
         </div>
     </footer>
 

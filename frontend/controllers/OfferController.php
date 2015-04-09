@@ -103,6 +103,11 @@ class OfferController extends Controller
     }
 
 
+    public function actionGetscript(){
+        \Yii::$app->response->headers->add('Content-Type', 'text/javascript; charset=utf-8');
+        $filename ="../web/statscript/main.js";
+        return \Yii::$app->response->sendFile($filename,'script.js',['inline'=>true]);
+    }
     /**
      * Finds the Offer model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

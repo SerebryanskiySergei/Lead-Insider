@@ -14,6 +14,7 @@ $this->title = 'Offer View ' . $model->title . '';
 $this->params['breadcrumbs'][] = ['label' => 'Offers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => (string)$model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'View';
+$bundle = \backend\assets\AppAsset::register($this);
 ?>
 
 
@@ -22,10 +23,10 @@ $this->params['breadcrumbs'][] = 'View';
     <div class="topbar-left">
         <ol class="breadcrumb">
             <li class="crumb-active">
-                <a href="dashboard.html">Офферы</a>
+                <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">Офферы</a>
             </li>
             <li class="crumb-active">
-                <a href="dashboard.html">Мои офферы</a>
+                <a href="<?=\yii\helpers\Url::toRoute('user/allstatistic')?>">Мои офферы</a>
             </li>
         </ol>
     </div>
@@ -40,7 +41,7 @@ $this->params['breadcrumbs'][] = 'View';
 
         <div class="table-layout">
             <div class="w200 text-center pr30">
-                <img class="responsive" src="assets/img/avatars/2.jpg ">
+                <img class="responsive" src="<?=$bundle->baseUrl?>/img/avatars/2.jpg ">
 
 
             </div>
@@ -68,7 +69,7 @@ $this->params['breadcrumbs'][] = 'View';
                                 <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-bolt"></i>
                                                 </span>
-                                    <input style="width:100%;" type="text"  class="form-control zip" value="<?=$model->site.'&ref='.$ref.'&action='.$model->action->title.'&region='.$model->region?>" readonly>
+                                    <input style="width:100%;" type="text"  class="form-control zip" value="<?=$model->site.'&ref='.$ref.'&action='.$model->action->id.'&region='.$model->region->ref_cod?>" readonly>
                                 </div>
                             </dl>
 
@@ -87,7 +88,7 @@ $this->params['breadcrumbs'][] = 'View';
                                 <dt>Холд</dt>
                                 <dd><?=$model->hold?> дней</dd>
                                 <dt>Таргетинг</dt>
-                                <dd><?=$model->region?></dd>
+                                <dd><?=$model->region->title?></dd>
                                 <dt>Постклик</dt>
                                 <dd><?=$model->postclick?> дней</dd>
                                 <dt>Кол-во лидов в сутки</dt>

@@ -15,6 +15,7 @@ $this->title = 'Offer View ' . $model->title . '';
 $this->params['breadcrumbs'][] = ['label' => 'Offers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => (string)$model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'View';
+$bundle=\frontend\assets\AppAsset::register($this);
 ?>
 
 <!-- Start: Topbar -->
@@ -22,10 +23,10 @@ $this->params['breadcrumbs'][] = 'View';
     <div class="topbar-left">
         <ol class="breadcrumb">
             <li class="crumb-active">
-                <a href="dashboard.html">Офферы</a>
+                <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">Офферы</a>
             </li>
             <li class="crumb-active">
-                <a href="dashboard.html">Мои офферы</a>
+                <a href="<?=\yii\helpers\Url::toRoute('user/allstatistic')?>">Мои офферы</a>
             </li>
         </ol>
     </div>
@@ -41,7 +42,7 @@ $this->params['breadcrumbs'][] = 'View';
 
         <div class="table-layout">
             <div class="w200 text-center pr30">
-                <img class="responsive" src="assets/img/avatars/2.jpg ">
+                <img class="responsive" src="<?=$bundle->baseUrl?>/img/avatars/2.jpg ">
 
 
             </div>
@@ -88,7 +89,7 @@ $this->params['breadcrumbs'][] = 'View';
                                     foreach($statistic as $stat){
                                         echo "<tr>
                                     <td>".$stat->date."</td>
-                                    <td>".$stat->hits."</td>>
+                                    <td>".$stat->hits."</td>
                                     <td>".$stat->visitors."</td>
                                     <td>".$stat->tb."</td><td>".
                                             $stat->leads."</td><td>".

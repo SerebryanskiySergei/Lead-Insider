@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\base\TicketComment;
+use common\models\Ticket;
 use Yii;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -67,6 +69,7 @@ class SiteController extends Controller
         else
             return $this->redirect('offer/index');
     }
+
 
     public function actionLogin()
     {

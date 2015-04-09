@@ -3,8 +3,10 @@
 namespace frontend\controllers;
 
 use common\models\Statistic;
+use common\models\Ticket;
 use common\models\User;
 use common\models\UserSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\filters\VerbFilter;
@@ -17,21 +19,8 @@ use yii\helpers\Url;
 class UserController extends Controller
 {
     public $layout = 'with_menu';
-	/**
-	 * Lists all User models.
-	 * @return mixed
-	 */
-	public function actionIndex()
-	{
-		$searchModel = new UserSearch;
-		$dataProvider = $searchModel->search($_GET);
 
-        Url::remember();
-		return $this->render('index', [
-			'dataProvider' => $dataProvider,
-			'searchModel' => $searchModel,
-		]);
-	}
+
 
 	/**
 	 * Displays a single User model.
@@ -44,28 +33,6 @@ class UserController extends Controller
         return $this->render('view', [
 			'model' => $this->findModel($id),
 		]);
-	}
-
-	/**
-	 * Creates a new User model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 * @return mixed
-	 */
-	public function actionCreate()
-	{
-		$model = new User;
-
-		try {
-            if ($model->load($_POST) && $model->save()) {
-                return $this->redirect(Url::previous());
-            } elseif (!\Yii::$app->request->isPost) {
-                $model->load($_GET);
-            }
-        } catch (\Exception $e) {
-            $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
-            $model->addError('_exception', $msg);
-		}
-        return $this->render('create', ['model' => $model,]);
 	}
 
 	/**
@@ -87,20 +54,20 @@ class UserController extends Controller
 		}
 	}
 
-	/**
-	 * Deletes an existing User model.
-	 * If deletion is successful, the browser will be redirected to the 'index' page.
-	 * @param integer $id
-	 * @return mixed
-	 */
-	public function actionDelete($id)
-	{
-		$this->findModel($id)->delete();
-		return $this->redirect(Url::previous());
-	}
     public function actionAllstatistic(){
         $statistic= Statistic::find()->where(['user_ref_id'=>\Yii::$app->user->id])->all();
         return $this->render('statistic',['statistic'=>$statistic]);
+    }
+    public function actionFaq(){
+        return $this->render('faq');
+    }
+    public function actionSupport($ticket_id = null){
+        if($ticket_id == null){
+
+        }
+        else{
+
+        }
     }
 
 	/**

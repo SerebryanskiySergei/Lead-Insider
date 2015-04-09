@@ -25,7 +25,7 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'price') ?>
 
-		<?= $form->field($model, 'region') ?>
+		<?= $form->field($model, 'region_id') ?>
 
 		<?php // echo $form->field($model, 'lead') ?>
 

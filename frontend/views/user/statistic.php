@@ -4,10 +4,10 @@
     <div class="topbar-left">
         <ol class="breadcrumb">
             <li class="crumb-active">
-                <a href="dashboard.html">Офферы</a>
+                <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">Офферы</a>
             </li>
             <li class="crumb-active">
-                <a href="dashboard.html">Мои офферы</a>
+                <a href="<?=\yii\helpers\Url::toRoute('user/allstatistic')?>">Мои офферы</a>
             </li>
         </ol>
     </div>
@@ -48,9 +48,6 @@
                                     <th>Посетители</th>
                                     <th>ТБ</th>
                                     <th>Лиды</th>
-<!--                                    <th><span class="fa fa-check"></span></th>-->
-<!--                                    <th><span class="fa fa-question"></span></th>-->
-<!--                                    <th><span class="fa fa-exclamation-triangle"></th>-->
                                     <th>EPC</th>
                                     <th>Холд</th>
                                     <th>Профит</th>
@@ -59,18 +56,16 @@
                                 <tbody>
                                 <?
                                 foreach($statistic as $stat){
-                                    echo "<tr>
-                                    <td>".$stat->date."</td>
-                                    <td>".$stat->hits."</td>>
+                                    echo"<tr><td>".$stat->date."</td><td>".$stat->hits."</td>
                                     <td>".$stat->visitors."</td>
-                                    <td>".$stat->tb."</td><td>".
-                                        $stat->leads."</td><td>".
-                                        $stat->offer->cpe."</td><td>".
-                                        $stat->hold."</td><td>".
-                                        $stat->profit."</td></tr>";
+                                    <td>".$stat->tb."</td>
+                                    <td>".$stat->leads."</td>
+                                    <td>".$stat->offer->cpe."</td>
+                                    <td>".$stat->hold."</td>
+                                    <td>".$stat->profit."</td>
+                                    </tr>";
                                 }
                                 ?>
-
                                 </tbody>
                             </table>
                         </div>

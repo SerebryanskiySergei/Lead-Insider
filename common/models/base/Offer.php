@@ -11,7 +11,7 @@ use Yii;
  * @property string $title
  * @property integer $action_id
  * @property double $price
- * @property string $region
+ * @property integer $region_id
  * @property string $lead
  * @property integer $hold
  * @property integer $access_type_id
@@ -34,6 +34,9 @@ use Yii;
  *
  * @property AccessType $accessType
  * @property OfferAction $action
+ * @property Region $region
+ * @property Statistic[] $statistics
+ * @property StatisticData[] $statisticDatas
  */
 class Offer extends \yii\db\ActiveRecord
 {
@@ -51,12 +54,11 @@ class Offer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'action_id', 'price', 'region', 'lead', 'hold', 'access_type_id', 'cpe', 'postclick', 'site', 'caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'traff_11'], 'required'],
-            [['action_id', 'hold', 'access_type_id', 'postclick'], 'integer'],
+            [['title', 'action_id', 'price', 'region_id', 'lead', 'hold', 'access_type_id', 'cpe', 'postclick', 'site', 'caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'traff_11', 'create_time'], 'required'],
+            [['action_id', 'region_id', 'hold', 'access_type_id', 'postclick'], 'integer'],
             [['price'], 'number'],
             [['caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'traff_11'], 'string'],
-            [['create_time'], 'safe'],
-            [['title', 'region', 'lead', 'cpe', 'site'], 'string', 'max' => 255]
+            [['title', 'lead', 'cpe', 'site'], 'string', 'max' => 255]
         ];
     }
 
@@ -70,7 +72,7 @@ class Offer extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'action_id' => Yii::t('app', 'Action ID'),
             'price' => Yii::t('app', 'Price'),
-            'region' => Yii::t('app', 'Region'),
+            'region_id' => Yii::t('app', 'Region ID'),
             'lead' => Yii::t('app', 'Lead'),
             'hold' => Yii::t('app', 'Hold'),
             'access_type_id' => Yii::t('app', 'Access Type ID'),
@@ -107,5 +109,29 @@ class Offer extends \yii\db\ActiveRecord
     public function getAction()
     {
         return $this->hasOne(\common\models\OfferAction::className(), ['id' => 'action_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRegion()
+    {
+        return $this->hasOne(\common\models\Region::className(), ['id' => 'region_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatistics()
+    {
+        return $this->hasMany(\common\models\Statistic::className(), ['offer_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatisticDatas()
+    {
+        return $this->hasMany(\common\models\StatisticData::className(), ['offer_id' => 'id']);
     }
 }

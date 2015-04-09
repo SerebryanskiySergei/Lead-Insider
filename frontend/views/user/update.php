@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = 'Edit';
     <div class="topbar-left">
         <ol class="breadcrumb">
             <li class="crumb-active">
-                <a href="dashboard.html">Настройка аккаунта</a>
+                <a href="<?=\yii\helpers\Url::toRoute('site/index')?>">Настройка аккаунта</a>
             </li>
         </ol>
     </div>

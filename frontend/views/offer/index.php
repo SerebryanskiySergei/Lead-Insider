@@ -18,10 +18,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="topbar-left">
         <ol class="breadcrumb">
             <li class="crumb-active">
-                <a href="dashboard.html">Офферы</a>
+                <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">Офферы</a>
             </li>
             <li class="crumb-active">
-                <a href="dashboard.html">Мои офферы</a>
+                <a href="<?=\yii\helpers\Url::toRoute('user/allstatistic')?>">Мои офферы</a>
             </li>
         </ol>
     </div>
@@ -58,10 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?
                         foreach($offers as $offer){ ?>
                         <tr>
-                            <td><a href="#"><?= $offer->title ?></a></td>
+                            <td><span style="font-weight: bold;"><?= $offer->title ?></span></td>
                             <td><?= $offer->action->title ?></td>
                             <td><?= $offer->price ?> руб.</td>
-                            <td><?= $offer->region ?></td>
+                            <td><?= $offer->region->title ?></td>
                             <td><?= $offer->lead ?></td>
                             <td><?= $offer->cpe ?></td>
                             <td><?= $offer->hold ?></td>

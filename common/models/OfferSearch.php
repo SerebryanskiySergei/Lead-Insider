@@ -15,7 +15,7 @@ class OfferSearch extends Model
 	public $title;
 	public $action_id;
 	public $price;
-	public $region;
+	public $region_id;
 	public $lead;
 	public $hold;
 	public $access_type_id;
@@ -39,8 +39,8 @@ class OfferSearch extends Model
 	public function rules()
 	{
 		return [
-			[['id', 'action_id', 'hold', 'access_type_id', 'postclick'], 'integer'],
-			[['title', 'region', 'lead', 'cpe', 'site', 'caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'traff_11', 'create_time'], 'safe'],
+			[['id', 'action_id', 'region_id', 'hold', 'access_type_id', 'postclick'], 'integer'],
+			[['title', 'lead', 'cpe', 'site', 'caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'traff_11', 'create_time'], 'safe'],
 			[['price'], 'number'],
 		];
 	}
@@ -55,7 +55,7 @@ class OfferSearch extends Model
 			'title' => 'Название',
 			'action_id' => 'Действие',
 			'price' => 'Цена',
-			'region' => 'Регион',
+			'region_id' => 'Region ID',
 			'lead' => 'Лид',
 			'hold' => 'Холд',
 			'access_type_id' => 'Тип доступа',
@@ -93,6 +93,7 @@ class OfferSearch extends Model
             'id' => $this->id,
             'action_id' => $this->action_id,
             'price' => $this->price,
+            'region_id' => $this->region_id,
             'hold' => $this->hold,
             'access_type_id' => $this->access_type_id,
             'postclick' => $this->postclick,
@@ -100,7 +101,6 @@ class OfferSearch extends Model
         ]);
 
 		$query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'region', $this->region])
             ->andFilterWhere(['like', 'lead', $this->lead])
             ->andFilterWhere(['like', 'cpe', $this->cpe])
             ->andFilterWhere(['like', 'site', $this->site])

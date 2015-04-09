@@ -121,6 +121,10 @@ $bundle = AppAsset::register($this);
                 </li>
                 <li class="ph10 pv20"> <i class="fa fa-circle text-tp fs8"></i>
                 </li>-->
+                <li class="ph10 pv20"> <span>Skype : Lead.Insider</span></li>
+                <li class="ph10 pv20"> <i class="fa fa-circle text-tp fs8"></i></li>
+                <li class="ph10 pv20"> <span>Баланс: <?=\common\models\User::findOne(Yii::$app->user->getId())->balance?> рублей</span></li>
+                <li class="ph10 pv20"> <i class="fa fa-circle text-tp fs8"></i></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="<?=$bundle->baseUrl?>/img/avatars/5.jpg" alt="avatar" class="mw30 br64 mr15">
                         <span><?=\common\models\User::findOne(Yii::$app->user->getId())->username?></span>
@@ -160,6 +164,18 @@ $bundle = AppAsset::register($this);
                         <a href="<?=\yii\helpers\Url::toRoute('user/allstatistic')?>">
                             <span class="fa fa-bar-chart"></span>
                             <span class="sidebar-title">Статистика</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=\yii\helpers\Url::toRoute('ticket/index')?>">
+                            <span class="fa fa-life-ring"></span>
+                            <span class="sidebar-title">Поддержка</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=\yii\helpers\Url::toRoute('user/faq')?>">
+                            <span class="fa fa-question"></span>
+                            <span class="sidebar-title">FAQ</span>
                         </a>
                     </li>
                 </ul>
@@ -279,7 +295,7 @@ $bundle = AppAsset::register($this);
             });
 
             // Init Demo JS
-            Demo.init();
+            //Demo.init();
 
             // Init Widget Demo JS
             // demoHighCharts.init();

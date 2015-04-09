@@ -11,7 +11,12 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'backuprestore' => [ 'class' => '\oe\modules\backuprestore\Module', 'layout' => '@backend/views/layouts/main'],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ]
+    ],
     'components' => [
       'urlManager' => [
             'enablePrettyUrl' => true,
@@ -27,8 +32,12 @@ return [
              'baseUrl' => '@web/assets'
         ],
         'request' => [
-            'baseUrl' => '/admin'
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
+            'baseUrl' => '/admin',
         ],
+
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
