@@ -7,20 +7,11 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
+
+
+$this->title = 'Тикеты';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<!-- Start: Topbar -->
-<header id="topbar">
-    <div class="topbar-left">
-        <ol class="breadcrumb">
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('offer/index/')?>">Поддержка</a>
-            </li>
-        </ol>
-    </div>
-
-</header>
-<!-- End: Topbar -->
-
 <!-- Begin: Content -->
 <section id="content">
 

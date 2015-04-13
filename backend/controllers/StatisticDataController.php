@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use common\models\StatisticData;
-use backend\models\StatisticDataSearch;
+use common\models\StatisticDataSearch;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\filters\VerbFilter;
@@ -15,6 +15,21 @@ use yii\helpers\Url;
  */
 class StatisticDataController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+
+        ];
+    }
 	/**
 	 * Lists all StatisticData models.
 	 * @return mixed

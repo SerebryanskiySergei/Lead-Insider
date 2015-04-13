@@ -4,11 +4,11 @@ namespace frontend\controllers;
 
 use common\models\base\User;
 use common\models\Offer;
-use common\models\OfferSearch;
+
 use common\models\Statistic;
 use yii\web\Controller;
 use yii\web\HttpException;
-use yii\filters\VerbFilter;
+
 use yii\filters\AccessControl;
 use yii\helpers\Url;
 
@@ -18,8 +18,21 @@ use yii\helpers\Url;
 class OfferController extends Controller
 {
     public $layout = 'with_menu';
-    public $username;
 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['webmaster'],
+                    ],
+                ],
+            ],
+        ];
+    }
     /**
      * Lists all Offer models.
      * @return mixed
@@ -28,7 +41,6 @@ class OfferController extends Controller
     {
         $offers = Offer::find()->all();
         Url::remember();
-        $this->username = User::findOne('id=', \Yii::$app->user->getId())->username;
         return $this->render('index', ['offers' => $offers]);
     }
 
@@ -45,69 +57,13 @@ class OfferController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new Offer model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Offer;
 
-        try {
-            if ($model->load($_POST) && $model->save()) {
-                return $this->redirect(Url::previous());
-            } elseif (!\Yii::$app->request->isPost) {
-                $model->load($_GET);
-            }
-        } catch (\Exception $e) {
-            $msg = (isset($e->errorInfo[2])) ? $e->errorInfo[2] : $e->getMessage();
-            $model->addError('_exception', $msg);
-        }
-        return $this->render('create', ['model' => $model,]);
-    }
     public function actionStatistic($id){
         $statistic= Statistic::find()->where(['offer_id'=>$id])->all();
-        return $this->render('statistic',['statistic'=>$statistic]);
+        $offer= Offer::find()->where(['id'=>$id])->one();
+        return $this->render('statistic',['statistic'=>$statistic,'offer'=>$offer]);
     }
 
-    /**
-     * Updates an existing Offer model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load($_POST) && $model->save()) {
-            return $this->redirect(Url::previous());
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Deletes an existing Offer model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-        return $this->redirect(Url::previous());
-    }
-
-
-    public function actionGetscript(){
-        \Yii::$app->response->headers->add('Content-Type', 'text/javascript; charset=utf-8');
-        $filename ="../web/statscript/main.js";
-        return \Yii::$app->response->sendFile($filename,'script.js',['inline'=>true]);
-    }
     /**
      * Finds the Offer model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

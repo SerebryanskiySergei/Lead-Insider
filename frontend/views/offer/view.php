@@ -10,29 +10,13 @@ use yii\widgets\Pjax;
 * @var common\models\Offer $model
 */
 
-$this->title = 'Offer View ' . $model->title . '';
-$this->params['breadcrumbs'][] = ['label' => 'Offers', 'url' => ['index']];
+$this->title = 'Просмотр оффера ' . $model->title . '';
+$this->params['breadcrumbs'][] = ['label' => 'Офферы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => (string)$model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'View';
+$this->params['breadcrumbs'][] = $this->title;
 $bundle = \backend\assets\AppAsset::register($this);
 ?>
 
-
-<!-- Start: Topbar -->
-<header id="topbar">
-    <div class="topbar-left">
-        <ol class="breadcrumb">
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">Офферы</a>
-            </li>
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('user/allstatistic')?>">Мои офферы</a>
-            </li>
-        </ol>
-    </div>
-
-</header>
-<!-- End: Topbar -->
 
 <!-- Begin: Content -->
 <section id="content">
@@ -41,15 +25,15 @@ $bundle = \backend\assets\AppAsset::register($this);
 
         <div class="table-layout">
             <div class="w200 text-center pr30">
-                <img class="responsive" src="<?=$bundle->baseUrl?>/img/avatars/2.jpg ">
+                <img class="responsive" src="<?=$bundle->baseUrl?>/img/offers/<?=$model->id?>.jpg">
 
 
             </div>
             <div class="va-t m30">
 
                 <h2 style="margin-top:0px;"><?=$model->title?><small> <?=$model->action->title?> </small></h2>
-                <p >Вебсайт: <a href="<?=$model->site?>"><?=$model->site?></a></p>
-                <p >Дата добавления оффера: <?=$model->create_time?></p>
+                <p >Вебсайт: <a target="_blank" href="<?=$model->site?>"><?=$model->site?></a></p>
+                <p >Дата добавления оффера: <?=Yii::$app->formatter->asDate($model->create_time)?></p>
                 <a  style="width:150px;" href="<?=\yii\helpers\Url::toRoute(['statistic','id'=>$model->id])?>" class="btn btn-success btn-gradient dark btn-block">Статистика</a>
             </div>
         </div>
@@ -69,7 +53,7 @@ $bundle = \backend\assets\AppAsset::register($this);
                                 <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-bolt"></i>
                                                 </span>
-                                    <input style="width:100%;" type="text"  class="form-control zip" value="<?=$model->site.'&ref='.$ref.'&action='.$model->action->id.'&region='.$model->region->ref_cod?>" readonly>
+                                    <input style="width:100%;" type="text"  class="form-control zip" value="<?=$model->site.'?LIref='.$ref.'&LIaction='.$model->action->id.'&LIregion='.$model->region->ref_cod?>" readonly>
                                 </div>
                             </dl>
 

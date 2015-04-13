@@ -15,6 +15,20 @@ use yii\helpers\Url;
  */
 class TicketController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['webmaster'],
+                    ],
+                ],
+            ],
+        ];
+    }
     public $layout = 'with_menu';
 	/**
 	 * Lists all Ticket models.

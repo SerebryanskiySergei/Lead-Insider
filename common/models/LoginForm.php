@@ -46,6 +46,9 @@ class LoginForm extends Model
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Неверный логин или пароль.');
             }
+            if ($user && $user->status==User::STATUS_DELETED) {
+                $this->addError($attribute, 'Вы забанены.');
+            }
         }
     }
 

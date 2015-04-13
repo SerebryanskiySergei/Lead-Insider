@@ -15,6 +15,21 @@ use yii\helpers\Url;
  */
 class UserController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+
+        ];
+    }
 	/**
 	 * Lists all User models.
 	 * @return mixed

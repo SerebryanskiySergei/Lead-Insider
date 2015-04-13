@@ -15,6 +15,10 @@ class User extends \common\models\base\User implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
+    const ROLE_WEBMASTER = "webmaster";
+    const ROLE_ADVERTISER = "advertiser";
+    const ROLE_ADMIN = "adminko";
+
     /**
      * @inheritdoc
      */
@@ -36,17 +40,20 @@ class User extends \common\models\base\User implements IdentityInterface
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'username' => Yii::t('app', 'Логин'),
+            'username' => Yii::t('app', 'Username'),
             'password_hash' => Yii::t('app', 'Password Hash'),
             'auth_key' => Yii::t('app', 'Auth Key'),
             'password_reset_token' => Yii::t('app', 'Password Reset Token'),
             'email' => Yii::t('app', 'Email'),
-            'status' => Yii::t('app', 'Активен/Неактивен'),
-            'created_at' => Yii::t('app', 'Дата добавления'),
-            'updated_at' => Yii::t('app', 'Дата обновления'),
-            'name' => Yii::t('app', 'Имя'),
-            'surname' => Yii::t('app', 'Фамилия'),
-            'phone' => Yii::t('app', 'Телефон'),
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
+            'name' => Yii::t('app', 'Name'),
+            'surname' => Yii::t('app', 'Surname'),
+            'phone' => Yii::t('app', 'Phone'),
+            'balance' => Yii::t('app', 'Balance'),
+            'ref' => Yii::t('app', 'Ref'),
+            'role' => Yii::t('app', 'Role'),
         ];
     }
 

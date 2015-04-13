@@ -1,20 +1,10 @@
 <?php
 /* @var $this yii\web\View */
-$this->title = 'Lead.Inside';
 
+
+$this->title = 'F.A.Q.';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<!-- Start: Topbar -->
-<header id="topbar">
-    <div class="topbar-left">
-        <ol class="breadcrumb">
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">FAQ</a>
-            </li>
-        </ol>
-    </div>
-
-</header>
-<!-- End: Topbar -->
 
 <!-- Begin: Content -->
 <section id="content">

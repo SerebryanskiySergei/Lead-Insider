@@ -21,8 +21,12 @@ use Yii;
  * @property string $phone
  * @property double $balance
  * @property string $ref
+ * @property string $role
  *
  * @property Payment[] $payments
+ * @property Statistic[] $statistics
+ * @property Ticket[] $tickets
+ * @property TicketComment[] $ticketComments
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -43,6 +47,7 @@ class User extends \yii\db\ActiveRecord
             [['username', 'password_hash', 'auth_key', 'email', 'created_at', 'updated_at', 'ref'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['balance'], 'number'],
+            [['role'], 'string'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'name', 'surname', 'phone', 'ref'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32]
         ];
@@ -68,6 +73,7 @@ class User extends \yii\db\ActiveRecord
             'phone' => Yii::t('app', 'Phone'),
             'balance' => Yii::t('app', 'Balance'),
             'ref' => Yii::t('app', 'Ref'),
+            'role' => Yii::t('app', 'Role'),
         ];
     }
 
@@ -77,5 +83,29 @@ class User extends \yii\db\ActiveRecord
     public function getPayments()
     {
         return $this->hasMany(\common\models\Payment::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatistics()
+    {
+        return $this->hasMany(\common\models\Statistic::className(), ['user_ref_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTickets()
+    {
+        return $this->hasMany(\common\models\Ticket::className(), ['sender_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTicketComments()
+    {
+        return $this->hasMany(\common\models\TicketComment::className(), ['author_id' => 'id']);
     }
 }

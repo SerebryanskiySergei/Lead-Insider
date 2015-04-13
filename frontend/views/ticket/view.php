@@ -4,19 +4,13 @@
  * @var common\models\Ticket $ticket
  * @var common\models\TicketComment[] $comments
  */
- ?>
-<!-- Start: Topbar -->
-<header id="topbar">
-    <div class="topbar-left">
-        <ol class="breadcrumb">
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">Поддержка</a>
-            </li>
-        </ol>
-    </div>
 
-</header>
-<!-- End: Topbar -->
+
+$this->title = 'Тикет ' . $ticket->title . '';
+$this->params['breadcrumbs'][] = ['label' => 'Тикеты', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+ ?>
+
 
 <!-- Begin: Content -->
 <section id="content">
@@ -58,7 +52,7 @@
                                             }
                                         }
                                         ?>
-                                        <form method="post" action="<?=\yii\helpers\Url::toRoute('ticketcomment/create')?>">
+                                        <form method="post" action="<?=\yii\helpers\Url::toRoute('ticket-comment/create');?>">
                                         <div class="section mb10">
                                             <label class="field prepend-icon">
                                                 <textarea style="height: 160px;" class="gui-textarea br-light bg-light" id="comment" name="TicketComment[text]" placeholder="Сообщение"></textarea>

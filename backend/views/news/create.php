@@ -4,14 +4,14 @@ use yii\helpers\Html;
 
 /**
 * @var yii\web\View $this
-* @var common\models\User $model
+* @var common\models\News $model
 */
 
 $this->title = 'Create';
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'News', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-create">
+<div class="news-create">
 
     <p class="pull-left">
         <?= Html::a('Cancel', \yii\helpers\Url::previous(), ['class' => 'btn btn-default']) ?>

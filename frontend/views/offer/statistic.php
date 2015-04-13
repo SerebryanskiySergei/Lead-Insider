@@ -11,28 +11,12 @@ use yii\widgets\Pjax;
  * @var common\models\Statistic[] $statistic
  */
 
-$this->title = 'Offer View ' . $model->title . '';
-$this->params['breadcrumbs'][] = ['label' => 'Offers', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string)$model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'View';
+$this->title = 'Статистика оффера ' . $model->title . '';
+$this->params['breadcrumbs'][] = ['label' => 'Офферы', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => (string)$offer->title, 'url' => ['view', 'id' => $offer->id]];
+$this->params['breadcrumbs'][] = $this->title;
 $bundle=\frontend\assets\AppAsset::register($this);
 ?>
-
-<!-- Start: Topbar -->
-<header id="topbar">
-    <div class="topbar-left">
-        <ol class="breadcrumb">
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">Офферы</a>
-            </li>
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('user/allstatistic')?>">Мои офферы</a>
-            </li>
-        </ol>
-    </div>
-
-</header>
-<!-- End: Topbar -->
 
 <!-- Begin: Content -->
 <section id="content">
@@ -42,18 +26,15 @@ $bundle=\frontend\assets\AppAsset::register($this);
 
         <div class="table-layout">
             <div class="w200 text-center pr30">
-                <img class="responsive" src="<?=$bundle->baseUrl?>/img/avatars/2.jpg ">
+                <img class="responsive" src="<?=$bundle->baseUrl?>/img/offers/<?=$offer->id?>.jpg">
 
 
             </div>
             <div class="va-t m30">
 
-                <h2 style="margin-top:0px;"> Название оффера<small> Оплачиваемое действие </small></h2>
-                <p >Вебсайт: <a href="http://google.com">http://google.com</a></p>
-                <p >Дата добавления оффера: 27/05/15</p>
-                <a  style="width:150px;" href="#" class="btn btn-success btn-gradient dark btn-block">Статистика</a>
-
-
+                <h2 style="margin-top:0px;"><?=$offer->title?><small> <?=$offer->action->title?> </small></h2>
+                <p >Вебсайт: <a href="<?=$offer->site?>"><?=$offer->site?></a></p>
+                <p >Дата добавления оффера: <?=Yii::$app->formatter->asDate($offer->create_time)?></p>
 
             </div>
         </div>

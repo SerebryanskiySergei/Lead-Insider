@@ -10,25 +10,9 @@ use yii\grid\GridView;
 * @var common\models\Offer[] $offers
 */
 
-$this->title = 'Offers';
+$this->title = 'Офферы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<!-- Start: Topbar -->
-<header id="topbar">
-    <div class="topbar-left">
-        <ol class="breadcrumb">
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">Офферы</a>
-            </li>
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('user/allstatistic')?>">Мои офферы</a>
-            </li>
-        </ol>
-    </div>
-
-</header>
-<!-- End: Topbar -->
-
 <!-- Begin: Content -->
 <section id="content">
 
@@ -60,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <tr>
                             <td><span style="font-weight: bold;"><?= $offer->title ?></span></td>
                             <td><?= $offer->action->title ?></td>
-                            <td><?= $offer->price ?> руб.</td>
+                            <td><?= intval((($offer->price)/100)*(100-$offer->our_percent)) ?> руб.</td>
                             <td><?= $offer->region->title ?></td>
                             <td><?= $offer->lead ?></td>
                             <td><?= $offer->cpe ?></td>

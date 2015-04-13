@@ -8,13 +8,12 @@ use Yii;
  * This is the base-model class for table "statistic_data".
  *
  * @property integer $id
- * @property integer $user_id
- * @property integer $offer_id
+ * @property integer $stat_id
  * @property string $data
  * @property string $good_region
+ * @property string $status
  *
- * @property Offer $offer
- * @property User $user
+ * @property Statistic $stat
  */
 class StatisticData extends \yii\db\ActiveRecord
 {
@@ -32,9 +31,9 @@ class StatisticData extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-//            [['id', 'user//_id', 'offer_id', 'data'], 'required'],
-//            [['id', 'user_id', 'offer_id'], 'integer'],
-//            [['data', 'good_region'], 'string']
+            [['stat_id', 'data'], 'required'],
+            [['stat_id'], 'integer'],
+            [['data', 'good_region', 'status'], 'string']
         ];
     }
 
@@ -45,26 +44,18 @@ class StatisticData extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'offer_id' => Yii::t('app', 'Offer ID'),
+            'stat_id' => Yii::t('app', 'Stat ID'),
             'data' => Yii::t('app', 'Data'),
             'good_region' => Yii::t('app', 'Good Region'),
+            'status' => Yii::t('app', 'Status'),
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getOffer()
+    public function getStat()
     {
-        return $this->hasOne(\common\models\Offer::className(), ['id' => 'offer_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser()
-    {
-        return $this->hasOne(\common\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\common\models\Statistic::className(), ['id' => 'stat_id']);
     }
 }

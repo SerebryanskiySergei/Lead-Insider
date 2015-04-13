@@ -7,23 +7,10 @@ use yii\helpers\Html;
  * @var common\models\User $model
  */
 
-$this->title = 'User Update ' . $model->id . '';
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Edit';
+$this->title = 'Кабинет пользователя' . $model->username . '';
+$this->params['breadcrumbs'][] = 'Настройка аккаунта';
 ?>
-<!-- Start: Topbar -->
-<header id="topbar">
-    <div class="topbar-left">
-        <ol class="breadcrumb">
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('site/index')?>">Настройка аккаунта</a>
-            </li>
-        </ol>
-    </div>
 
-</header>
-<!-- End: Topbar -->
 
 <!-- Begin: Content -->
 <section id="content">

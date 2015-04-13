@@ -16,6 +16,20 @@ class TicketCommentController extends Controller
 {
     public $layout = 'with_menu';
 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['webmaster'],
+                    ],
+                ],
+            ],
+        ];
+    }
 	public function actionCreate()
 	{
 		$model = new TicketComment;
@@ -26,7 +40,7 @@ class TicketCommentController extends Controller
                 $model->create_date = $model->create_date->format('Y-m-d H:i:s');
                 $model->author_id=\Yii::$app->user->getId();
                 if($model->save())
-                    $this->redirect(Url::toRoute(['ticket/view','id'=>$model->ticket_id]));
+                    return $this->redirect(Url::toRoute(['ticket/view','id'=>$model->ticket_id]));
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);
             }

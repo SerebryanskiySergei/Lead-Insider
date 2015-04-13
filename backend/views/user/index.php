@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="pull-right">
 
 
-                                                    
+                                                                                                                                        
             <?php 
             echo \yii\bootstrap\ButtonDropdown::widget(
                 [
@@ -45,6 +45,24 @@ $this->params['breadcrumbs'][] = $this->title;
             'payment/index',
         ],
     ],
+    [
+        'label' => '<i class="glyphicon glyphicon-arrow-right"> Statistic</i>',
+        'url' => [
+            'statistic/index',
+        ],
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-arrow-right"> Ticket</i>',
+        'url' => [
+            'ticket/index',
+        ],
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-arrow-right"> Ticket Comment</i>',
+        'url' => [
+            'ticket-comment/index',
+        ],
+    ],
 ]                    ],
                 ]
             );
@@ -58,18 +76,19 @@ $this->params['breadcrumbs'][] = $this->title;
         
 			'id',
 			'username',
-//			'password_hash',
-//			'auth_key',
-//			'password_reset_token',
+			'password_hash',
+			'auth_key',
+			'password_reset_token',
 			'email:email',
 			'status',
 			/*'created_at'*/
 			/*'updated_at'*/
-			'name',
-			'surname',
-			'phone',
-			'balance',
-			'ref',
+			/*'name'*/
+			/*'surname'*/
+			/*'phone'*/
+			/*'balance'*/
+			/*'ref'*/
+			/*'role'*/
             [
                 'class' => 'yii\grid\ActionColumn',
                 'urlCreator' => function($action, $model, $key, $index) {

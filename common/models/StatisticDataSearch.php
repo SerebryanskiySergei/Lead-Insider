@@ -12,15 +12,16 @@ use common\models\StatisticData;
 class StatisticDataSearch extends Model
 {
 	public $id;
-	public $user_id;
-	public $offer_id;
+	public $stat_id;
 	public $data;
+	public $good_region;
+	public $status;
 
 	public function rules()
 	{
 		return [
-			[['id', 'user_id', 'offer_id'], 'integer'],
-			[['data'], 'safe'],
+			[['id', 'stat_id'], 'integer'],
+			[['data', 'good_region', 'status'], 'safe'],
 		];
 	}
 
@@ -31,9 +32,10 @@ class StatisticDataSearch extends Model
 	{
 		return [
 			'id' => 'ID',
-			'user_id' => 'User ID',
-			'offer_id' => 'Offer ID',
+			'stat_id' => 'Stat ID',
 			'data' => 'Data',
+			'good_region' => 'Good Region',
+			'status' => 'Status',
 		];
 	}
 
@@ -50,11 +52,12 @@ class StatisticDataSearch extends Model
 
 		$query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'offer_id' => $this->offer_id,
+            'stat_id' => $this->stat_id,
         ]);
 
-		$query->andFilterWhere(['like', 'data', $this->data]);
+		$query->andFilterWhere(['like', 'data', $this->data])
+            ->andFilterWhere(['like', 'good_region', $this->good_region])
+            ->andFilterWhere(['like', 'status', $this->status]);
 
 		return $dataProvider;
 	}

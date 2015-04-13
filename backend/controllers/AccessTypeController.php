@@ -15,6 +15,21 @@ use yii\helpers\Url;
  */
 class AccessTypeController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+
+        ];
+    }
 	/**
 	 * Lists all AccessType models.
 	 * @return mixed

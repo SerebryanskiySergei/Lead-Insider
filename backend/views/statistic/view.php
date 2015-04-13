@@ -77,6 +77,46 @@ $this->params['breadcrumbs'][] = 'View';
 
 
     
+<?php $this->beginBlock('StatisticDatas'); ?>
+<p class='pull-right'>
+  <?= \yii\helpers\Html::a(
+            '<span class="glyphicon glyphicon-list"></span> List All Statistic Datas',
+            ['statistic-data/index'],
+            ['class'=>'btn text-muted btn-xs']
+        ) ?>
+  <?= \yii\helpers\Html::a(
+            '<span class="glyphicon glyphicon-plus"></span> New Statistic Data',
+            ['statistic-data/create', 'StatisticData'=>['stat_id'=>$model->id]],
+            ['class'=>'btn btn-success btn-xs']
+        ) ?>
+</p><div class='clearfix'></div>
+<?php Pjax::begin(['id'=>'pjax-StatisticDatas','linkSelector'=>'#pjax-StatisticDatas ul.pagination a']) ?>
+<?= \yii\grid\GridView::widget([
+    'dataProvider' => new \yii\data\ActiveDataProvider(['query' => $model->getStatisticDatas(), 'pagination' => ['pageSize' => 10]]),
+    'columns' => [			'id',
+			'data:ntext',
+			'good_region',
+			'status',
+[
+    'class'      => 'yii\grid\ActionColumn',
+    'template'   => '{view} {update}',
+    'contentOptions' => ['nowrap'=>'nowrap'],
+    'urlCreator' => function($action, $model, $key, $index) {
+        // using the column name as key, not mapping to 'id' like the standard generator
+        $params = is_array($key) ? $key : [$model->primaryKey()[0] => (string) $key];
+        $params[0] = 'statistic-data' . '/' . $action;
+        return \yii\helpers\Url::toRoute($params);
+    },
+    'buttons'    => [
+        
+    ],
+    'controller' => 'statistic-data'
+],]
+]);?>
+<?php Pjax::end() ?>
+<?php $this->endBlock() ?>
+
+
     <?=
     \yii\bootstrap\Tabs::widget(
                  [
@@ -86,6 +126,10 @@ $this->params['breadcrumbs'][] = 'View';
     'label'   => '<span class="glyphicon glyphicon-asterisk"></span> Statistic',
     'content' => $this->blocks['common\models\Statistic'],
     'active'  => true,
+],[
+    'label'   => '<small><span class="glyphicon glyphicon-paperclip"></span> Statistic Datas</small>',
+    'content' => $this->blocks['StatisticDatas'],
+    'active'  => false,
 ], ]
                  ]
     );

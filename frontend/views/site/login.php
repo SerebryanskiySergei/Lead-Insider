@@ -16,7 +16,7 @@ $bundle = \yii\web\AssetBundle::register($this);
     <div class="row mb15 table-layout">
 
         <div class="col-xs-6 va-m pln">
-            <a href="dashboard.html" title="Return to Dashboard">
+            <a href="<?=\yii\helpers\Url::toRoute('site/index')?>" title="Return to Dashboard">
                 <img src="<?=$bundle->baseUrl.'/img/logos/logo_white.png'?>" title="AdminDesigns Logo" class="img-responsive w250">
             </a>
         </div>

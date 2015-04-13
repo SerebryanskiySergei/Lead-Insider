@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="pull-right">
 
 
-                                                                                
+                                                                                                            
             <?php 
             echo \yii\bootstrap\ButtonDropdown::widget(
                 [
@@ -49,6 +49,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'label' => '<i class="glyphicon glyphicon-arrow-left"> User</i>',
         'url' => [
             'user/index',
+        ],
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-arrow-right"> Statistic Data</i>',
+        'url' => [
+            'statistic-data/index',
         ],
     ],
 ]                    ],

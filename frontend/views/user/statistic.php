@@ -1,19 +1,11 @@
 
-<!-- Start: Topbar -->
-<header id="topbar">
-    <div class="topbar-left">
-        <ol class="breadcrumb">
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">Офферы</a>
-            </li>
-            <li class="crumb-active">
-                <a href="<?=\yii\helpers\Url::toRoute('user/allstatistic')?>">Мои офферы</a>
-            </li>
-        </ol>
-    </div>
+<?php
+/* @var $this yii\web\View */
 
-</header>
-<!-- End: Topbar -->
+
+$this->title = 'Ваша статистика';
+$this->params['breadcrumbs'][] = $this->title;
+?>
 
 <!-- Begin: Content -->
 <section id="content">

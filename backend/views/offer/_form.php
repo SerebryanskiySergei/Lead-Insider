@@ -1,6 +1,5 @@
 <?php
 
-use vova07\imperavi\Widget;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
@@ -9,7 +8,6 @@ use yii\bootstrap\ActiveForm;
 * @var common\models\Offer $model
 * @var yii\widgets\ActiveForm $form
 */
-$datenow = new DateTime();
 ?>
 
 <div class="offer-form">
@@ -43,43 +41,22 @@ $form->field($model, 'access_type_id')->dropDownList(
 ); ?>
 			<?= $form->field($model, 'cpe')->textInput(['maxlength' => 255]) ?>
 			<?= $form->field($model, 'postclick')->textInput() ?>
-            <?= $form->field($model,'site')->widget(\yii\widgets\MaskedInput::className(),[
-                'name' => 'site',
-                'clientOptions' => [
-                'alias' =>  'url',
-            ],])?>
-			<?= $form->field($model, 'caption')->widget(Widget::className(), [
-                'settings' => [
-                    'lang' => 'ru',
-                    'minHeight' => 200,
-                    'plugins' => [
-                        'clips',
-                        'fullscreen'
-                    ]
-                ]
-            ]);?>
-			<?= $form->field($model, 'traff_1')->radioList([ 'Y' => 'Разрешен', 'N' => 'Запрещен' ]) ?>
-			<?= $form->field($model, 'traff_2')->radioList([ 'Y' => 'Разрешен', 'N' => 'Запрещен' ]) ?>
-			<?= $form->field($model, 'traff_3')->radioList([ 'Y' => 'Разрешен', 'N' => 'Запрещен' ]) ?>
-			<?= $form->field($model, 'traff_4')->radioList([ 'Y' => 'Разрешен', 'N' => 'Запрещен' ]) ?>
-			<?= $form->field($model, 'traff_5')->radioList([ 'Y' => 'Разрешен', 'N' => 'Запрещен' ]) ?>
-			<?= $form->field($model, 'traff_6')->radioList([ 'Y' => 'Разрешен', 'N' => 'Запрещен' ]) ?>
-			<?= $form->field($model, 'traff_7')->radioList([ 'Y' => 'Разрешен', 'N' => 'Запрещен' ]) ?>
-			<?= $form->field($model, 'traff_8')->radioList([ 'Y' => 'Разрешен', 'N' => 'Запрещен' ]) ?>
-			<?= $form->field($model, 'traff_9')->radioList([ 'Y' => 'Разрешен', 'N' => 'Запрещен' ]) ?>
-			<?= $form->field($model, 'traff_10')->radioList([ 'Y' => 'Разрешен', 'N' => 'Запрещен' ]) ?>
-			<?= $form->field($model, 'traff_11')->radioList([ 'Y' => 'Разрешен', 'N' => 'Запрещен' ]) ?>
-            <?= $form->field($model, 'create_time')->widget(\kartik\datetime\DateTimePicker::classname(), [
-                //'name' => 'create_time',
-                'language'=>'ru',
-                'options' => ['placeholder' => 'Select operating time ...'],
-                //'convertFormat' => true,
-                'pluginOptions' => [
-                    'autoclose'=>true,
-                    'format' => 'yyyy-mm-dd hh:ii',
-                    'todayHighlight' => true
-                ]
-            ]) ?>
+			<?= $form->field($model, 'site')->textInput(['maxlength' => 255]) ?>
+			<?= $form->field($model, 'caption')->textarea(['rows' => 6]) ?>
+			<?= $form->field($model, 'traff_1')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'traff_2')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'traff_3')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'traff_4')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'traff_5')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'traff_6')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'traff_7')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'traff_8')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'traff_9')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'traff_10')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'traff_11')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'create_time')->textInput() ?>
+			<?= $form->field($model, 'our_percent')->textInput() ?>
+			<?= $form->field($model, 'status')->dropDownList([ 'active' => 'Active', 'pause' => 'Pause', ], ['prompt' => '']) ?>
         </p>
         <?php $this->endBlock(); ?>
         

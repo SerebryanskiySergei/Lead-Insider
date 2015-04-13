@@ -23,7 +23,7 @@ $bundle = AppAsset::register($this);
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:400,500,700,300">
         <?php $this->head() ?>
         <!-- Favicon -->
-        <link rel="shortcut icon" href="../../web/img/favicon.jpg">
+        <link rel="shortcut icon" href="<?=$bundle->baseUrl?>/img/favicon.jpg">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -127,7 +127,7 @@ $bundle = AppAsset::register($this);
                 <li class="ph10 pv20"> <i class="fa fa-circle text-tp fs8"></i></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="<?=$bundle->baseUrl?>/img/avatars/5.jpg" alt="avatar" class="mw30 br64 mr15">
-                        <span><?=\common\models\User::findOne(Yii::$app->user->getId())->username?></span>
+                        <span><?=\common\models\User::findOne(Yii::$app->user->getId())->name?></span>
                         <span class="caret caret-tp"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-persist pn w250 bg-white" role="menu">
@@ -167,6 +167,12 @@ $bundle = AppAsset::register($this);
                         </a>
                     </li>
                     <li>
+                        <a href="<?=\yii\helpers\Url::toRoute('news/index')?>">
+                            <span class="fa fa-life-ring"></span>
+                            <span class="sidebar-title">Новости</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?=\yii\helpers\Url::toRoute('ticket/index')?>">
                             <span class="fa fa-life-ring"></span>
                             <span class="sidebar-title">Поддержка</span>
@@ -189,6 +195,21 @@ $bundle = AppAsset::register($this);
 
         <!-- Start: Content -->
         <section id="content_wrapper">
+            <!-- Start: Topbar -->
+            <header id="topbar">
+                <div class="topbar-left">
+                    <ol class="breadcrumb">
+                        <li class="crumb-active">
+                            <?= Breadcrumbs::widget([
+                                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                            ]) ?>
+                        </li>
+                    </ol>
+                </div>
+
+            </header>
+            <!-- End: Topbar -->
+
             <?= $content ?>
 
         </section>

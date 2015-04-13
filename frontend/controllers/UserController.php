@@ -21,6 +21,20 @@ class UserController extends Controller
     public $layout = 'with_menu';
 
 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['webmaster'],
+                    ],
+                ],
+            ],
+        ];
+    }
 
 	/**
 	 * Displays a single User model.
@@ -58,16 +72,9 @@ class UserController extends Controller
         $statistic= Statistic::find()->where(['user_ref_id'=>\Yii::$app->user->id])->all();
         return $this->render('statistic',['statistic'=>$statistic]);
     }
+
     public function actionFaq(){
         return $this->render('faq');
-    }
-    public function actionSupport($ticket_id = null){
-        if($ticket_id == null){
-
-        }
-        else{
-
-        }
     }
 
 	/**

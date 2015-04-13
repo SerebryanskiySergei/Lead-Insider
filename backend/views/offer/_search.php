@@ -25,7 +25,11 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'price') ?>
 
-		<?= $form->field($model, 'region_id') ?>
+		<?= $form->field($model, 'our_percent') ?>
+
+		<?php // echo $form->field($model, 'status') ?>
+
+		<?php // echo $form->field($model, 'region_id') ?>
 
 		<?php // echo $form->field($model, 'lead') ?>
 

@@ -23,6 +23,7 @@ use Yii;
  *
  * @property Offer $offer
  * @property User $userRef
+ * @property StatisticData[] $statisticDatas
  */
 class Statistic extends \yii\db\ActiveRecord
 {
@@ -41,7 +42,8 @@ class Statistic extends \yii\db\ActiveRecord
     {
         return [
             [['offer_id', 'user_ref_id', 'hits', 'visitors', 'tb', 'leads', 'confirmed', 'question', 'warning', 'hold', 'profit'], 'integer'],
-            [['date'], 'safe']
+            [['date'], 'required'],
+            [['date','leads'], 'safe']
         ];
     }
 
@@ -81,5 +83,13 @@ class Statistic extends \yii\db\ActiveRecord
     public function getUserRef()
     {
         return $this->hasOne(\common\models\User::className(), ['id' => 'user_ref_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatisticDatas()
+    {
+        return $this->hasMany(\common\models\StatisticData::className(), ['stat_id' => 'id']);
     }
 }

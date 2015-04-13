@@ -15,6 +15,21 @@ use yii\helpers\Url;
  */
 class OfferActionController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+
+        ];
+    }
 	/**
 	 * Lists all OfferAction models.
 	 * @return mixed

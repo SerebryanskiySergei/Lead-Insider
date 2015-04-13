@@ -47,6 +47,7 @@ AppAsset::register($this);
                     ['label' => 'Типы доступа офферов', 'url' => ['/access-type/index']],
                     ['label' => 'Действия офферов', 'url' => ['/offer-action/index']],
                     ['label' => 'Регионы', 'url' => ['/region/index']],
+                    ['label' => 'Новости', 'url' => ['/news/index']],
                     ['label' => 'Бекапы', 'url' => ['backuprestore/default/']],
                 ]],
             ];

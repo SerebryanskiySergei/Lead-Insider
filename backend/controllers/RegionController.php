@@ -15,6 +15,21 @@ use yii\helpers\Url;
  */
 class RegionController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                ],
+            ],
+            
+        ];
+    }
 	/**
 	 * Lists all Region models.
 	 * @return mixed

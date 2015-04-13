@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 
 /**
  * @var yii\web\View $this
- * @var backend\models\StatisticDataSearch $model
+ * @var common\models\StatisticDataSearch $model
  * @var yii\widgets\ActiveForm $form
  */
 ?>
@@ -19,13 +19,13 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'id') ?>
 
-		<?= $form->field($model, 'user_id') ?>
-
-		<?= $form->field($model, 'offer_id') ?>
+		<?= $form->field($model, 'stat_id') ?>
 
 		<?= $form->field($model, 'data') ?>
 
 		<?= $form->field($model, 'good_region') ?>
+
+		<?= $form->field($model, 'status') ?>
 
 		<div class="form-group">
 			<?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
