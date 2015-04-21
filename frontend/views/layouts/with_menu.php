@@ -1,7 +1,5 @@
 <?php
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
@@ -123,11 +121,11 @@ $bundle = AppAsset::register($this);
                 </li>-->
                 <li class="ph10 pv20"> <span>Skype : Lead.Insider</span></li>
                 <li class="ph10 pv20"> <i class="fa fa-circle text-tp fs8"></i></li>
-                <li class="ph10 pv20"> <span>Баланс: <?=\common\models\User::findOne(Yii::$app->user->getId())->balance?> рублей</span></li>
+                <li class="ph10 pv20"> <span>Баланс: <?=Html::encode(\common\models\User::findOne(Yii::$app->user->getId())->balance)?> рублей</span></li>
                 <li class="ph10 pv20"> <i class="fa fa-circle text-tp fs8"></i></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="<?=$bundle->baseUrl?>/img/avatars/5.jpg" alt="avatar" class="mw30 br64 mr15">
-                        <span><?=\common\models\User::findOne(Yii::$app->user->getId())->name?></span>
+                        <span><?=Html::encode(\common\models\User::findOne(Yii::$app->user->getId())->name)?></span>
                         <span class="caret caret-tp"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-persist pn w250 bg-white" role="menu">
@@ -168,7 +166,7 @@ $bundle = AppAsset::register($this);
                     </li>
                     <li>
                         <a href="<?=\yii\helpers\Url::toRoute('news/index')?>">
-                            <span class="fa fa-life-ring"></span>
+                            <span class="fa fa-newspaper-o"></span>
                             <span class="sidebar-title">Новости</span>
                         </a>
                     </li>
@@ -210,6 +208,7 @@ $bundle = AppAsset::register($this);
             </header>
             <!-- End: Topbar -->
 
+            <?= Alert::widget() ?>
             <?= $content ?>
 
         </section>

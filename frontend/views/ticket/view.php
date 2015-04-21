@@ -33,22 +33,22 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <div class="section mb10">
 
 
-                                            <h2 style="margin-top:0px;"><?=$ticket->title?></h2>
+                                            <h2 style="margin-top:0px;"><?=\yii\helpers\Html::encode($ticket->title)?></h2>
 
                                         </div>
                                         <blockquote class="blockquote-alert blockquote-rounded mv10">
-                                            <p><?=$ticket->message?></p>
+                                            <p><?=\yii\helpers\Html::encode($ticket->message)?></p>
                                             <small>Ваше сообщение</small>
                                         </blockquote>
                                         <?
                                         foreach($comments as $comment){
                                             if($comment->author_id!=Yii::$app->user->getId()) {
                                                 echo "<blockquote class=\"blockquote-alert blockquote-reverse blockquote-rounded mv10\"><p>";
-                                                echo $comment->text . "</p><small>Агент Поддержки</small></blockquote>";
+                                                echo \yii\helpers\Html::encode($comment->text) . "</p><small>Агент Поддержки</small></blockquote>";
                                             }
                                             else{
                                                 echo "<blockquote class=\"blockquote-alert blockquote-rounded mv10\"><p>";
-                                                echo $comment->text . "</p><small>Ваше сообщение</small></blockquote>";
+                                                echo \yii\helpers\Html::encode($comment->text) . "</p><small>Ваше сообщение</small></blockquote>";
                                             }
                                         }
                                         ?>

@@ -26,8 +26,8 @@ $form->field($model, 'stat_id')->dropDownList(
     ['prompt'=>'Choose...']
 ); ?>
 			<?= $form->field($model, 'data')->textarea(['rows' => 6]) ?>
-			<?= $form->field($model, 'good_region')->dropDownList([ 'Y' => 'Y', 'N' => 'N', ], ['prompt' => '']) ?>
-			<?= $form->field($model, 'status')->dropDownList([ 'confirmed' => 'Confirmed', 'banned' => 'Banned', 'waiting' => 'Waiting', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'good_region')->radioList([ 'Y' => 'Целевой', 'N' => 'Нецелевой', ]) ?>
+			<?= $form->field($model, 'status')->radioList([ 'confirmed' => 'Confirmed', 'banned' => 'Banned', 'waiting' => 'Waiting', ]) ?>
         </p>
         <?php $this->endBlock(); ?>
         

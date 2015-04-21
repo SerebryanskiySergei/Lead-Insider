@@ -39,12 +39,19 @@ class SignupForm extends Model
     {
         if ($this->validate()) {
             $user = new User();
-            $user->username = $this->email;
             $user->email = $this->email;
+            $user->name= $this->email;
             $user->setPassword($this->password);
             $user->ref=Yii::$app->security->generateRandomString();
+            $user->status=User::STATUS_WAITING_VALIDATION;
+            $user->generateEmailConfirmToken();
             $user->generateAuthKey();
             if ($user->save()) {
+                Yii::$app->mailer->compose('confirmEmail', ['user' => $user])
+                    ->setFrom([Yii::$app->params['supportEmail'] => "Lead.Insider"])
+                    ->setTo($this->email)
+                    ->setSubject('Подтверждение регистрации на Lead.Insider')
+                    ->send();
                 return $user;
             }
         }

@@ -32,9 +32,9 @@ $bundle=\frontend\assets\AppAsset::register($this);
             </div>
             <div class="va-t m30">
 
-                <h2 style="margin-top:0px;"><?=$offer->title?><small> <?=$offer->action->title?> </small></h2>
-                <p >Вебсайт: <a href="<?=$offer->site?>"><?=$offer->site?></a></p>
-                <p >Дата добавления оффера: <?=Yii::$app->formatter->asDate($offer->create_time)?></p>
+                <h2 style="margin-top:0px;"><?=Html::encode($offer->title)?><small> <?=Html::encode($offer->action->title)?> </small></h2>
+                <p >Вебсайт: <a href="<?=Html::encode($offer->site)?>"><?=Html::encode($offer->site)?></a></p>
+                <p >Дата добавления оффера: <?=Yii::$app->formatter->asDate(Html::encode($offer->create_time))?></p>
 
             </div>
         </div>
@@ -57,9 +57,9 @@ $bundle=\frontend\assets\AppAsset::register($this);
                                     <th>Посетители</th>
                                     <th>ТБ</th>
                                     <th>Лиды</th>
-<!--                                    <th><span class="fa fa-check"></span></th>-->
-<!--                                    <th><span class="fa fa-question"></span></th>-->
-<!--                                    <th><span class="fa fa-exclamation-triangle"></th>-->
+                                    <th><span class="fa fa-check"></span></th>
+                                    <th><span class="fa fa-question"></span></th>
+                                    <th><span class="fa fa-exclamation-triangle"></th>
                                     <th>EPC</th>
                                     <th>Холд</th>
                                     <th>Профит</th>
@@ -69,14 +69,17 @@ $bundle=\frontend\assets\AppAsset::register($this);
                                 <?
                                     foreach($statistic as $stat){
                                         echo "<tr>
-                                    <td>".$stat->date."</td>
-                                    <td>".$stat->hits."</td>
-                                    <td>".$stat->visitors."</td>
-                                    <td>".$stat->tb."</td><td>".
-                                            $stat->leads."</td><td>".
-                                            $stat->offer->cpe."</td><td>".
-                                            $stat->hold."</td><td>".
-                                            $stat->profit."</td></tr>";
+                                    <td>".Html::encode($stat->date)."</td>
+                                    <td>".Html::encode($stat->hits)."</td>
+                                    <td>".Html::encode($stat->visitors)."</td>
+                                    <td>".Html::encode($stat->tb)."</td><td>".
+                                            Html::encode($stat->leads)."</td><td>".
+                                            Html::encode($stat->confirmed)."</td><td>".
+                                            Html::encode($stat->question)."</td><td>".
+                                            Html::encode($stat->warning)."</td><td>".
+                                            Html::encode($stat->offer->cpe)."</td><td>".
+                                            Html::encode($stat->hold)."</td><td>".
+                                            Html::encode($stat->profit)."</td></tr>";
                                     }
                                 ?>
                                 </tbody>

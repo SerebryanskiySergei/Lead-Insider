@@ -15,6 +15,7 @@ class StatisticData extends \common\models\base\StatisticData
             $statistic= Statistic::findOne($this->stat_id);
             $offer = Offer::findOne($statistic->offer_id);
             $benefit = intval((($offer->price)/100)*(100-$offer->our_percent));
+            $systembenefit = $offer->price - $benefit;
 
             if($changedAttributes['status']=='waiting'){
                 $statistic->question--;
@@ -31,6 +32,12 @@ class StatisticData extends \common\models\base\StatisticData
                     $statistic->confirmed++;
                     $statistic->save();
                     $user->save();
+                    $sysBen = SystemInfo::findOne(['key'=>'Clear benefits']);
+                    $sysBen->value = (int)$sysBen->value +$systembenefit;
+                    $sysBen->save();
+                    $sysBen = SystemInfo::findOne(['key'=>'Val benefits']);
+                    $sysBen->value = (int)$sysBen->value +$offer->price;
+                    $sysBen->save();
                 }
             }
             if($changedAttributes['status']=='confirmed'){
@@ -43,6 +50,12 @@ class StatisticData extends \common\models\base\StatisticData
                     $statistic->question++;
                     $statistic->save();
                     $user->save();
+                    $sysBen = SystemInfo::findOne(['key'=>'Clear benefits']);
+                    $sysBen->value = (int)$sysBen->value -$systembenefit;
+                    $sysBen->save();
+                    $sysBen = SystemInfo::findOne(['key'=>'Val benefits']);
+                    $sysBen->value = (int)$sysBen->value -$offer->price;
+                    $sysBen->save();
                 }
                 if($this->status == 'banned'){
                     $user = User::findOne($statistic->user_ref_id);
@@ -51,6 +64,12 @@ class StatisticData extends \common\models\base\StatisticData
                     $statistic->warning++;
                     $statistic->save();
                     $user->save();
+                    $sysBen = SystemInfo::findOne(['key'=>'Clear benefits']);
+                    $sysBen->value = (int)$sysBen->value -$systembenefit;
+                    $sysBen->save();
+                    $sysBen = SystemInfo::findOne(['key'=>'Val benefits']);
+                    $sysBen->value = (int)$sysBen->value -$offer->price;
+                    $sysBen->save();
                 }
             }
             if($changedAttributes['status']=='banned'){
@@ -67,6 +86,12 @@ class StatisticData extends \common\models\base\StatisticData
                     $statistic->confirmed++;
                     $statistic->save();
                     $user->save();
+                    $sysBen = SystemInfo::findOne(['key'=>'Clear benefits']);
+                    $sysBen->value = (int)$sysBen->value +$systembenefit;
+                    $sysBen->save();
+                    $sysBen = SystemInfo::findOne(['key'=>'Val benefits']);
+                    $sysBen->value = (int)$sysBen->value +$offer->price;
+                    $sysBen->save();
                 }
             }
 
@@ -81,4 +106,15 @@ class StatisticData extends \common\models\base\StatisticData
             $statistic->save();
         }
     }
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'stat_id' => Yii::t('app', 'Ячейка статистики'),
+            'data' => Yii::t('app', 'Заполненные данные'),
+            'good_region' => Yii::t('app', 'Таргетинг'),
+            'status' => Yii::t('app', 'Статус'),
+        ];
+    }
+
 }

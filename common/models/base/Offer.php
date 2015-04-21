@@ -34,6 +34,7 @@ use Yii;
  * @property string $traff_11
  * @property string $create_time
  *
+ * @property News[] $news
  * @property AccessType $accessType
  * @property OfferAction $action
  * @property Region $region
@@ -97,6 +98,14 @@ class Offer extends \yii\db\ActiveRecord
             'traff_11' => Yii::t('app', 'Traff 11'),
             'create_time' => Yii::t('app', 'Create Time'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNews()
+    {
+        return $this->hasMany(\common\models\News::className(), ['offer_id' => 'id']);
     }
 
     /**

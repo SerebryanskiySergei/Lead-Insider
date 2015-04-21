@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div id="tab1_1" class="tab-pane active">
 
                                     <form class="section row mbn" action="<?=\yii\helpers\Url::toRoute('ticket/create');?>" method="post">
+                                        <? ?>
                                         <div class="section mb10">
                                             <div class="va-t ">
                                                 <h2 style="margin-top:0px;"> Новый тикет</h2>
@@ -71,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </thead>
                                 <tbody>
                                 <?foreach ($tickets as $ticket){
-                                    echo"<td>$ticket->title</td><td>$ticket->message</td>";
+                                    echo"<td>".Html::encode($ticket->title)."</td><td>".Html::encode($ticket->message)."</td>";
                                     if($ticket->status==\common\models\Ticket::STATUS_HAVE_ANSWER)
                                         echo"<td>Есть ответ</td>";
                                     elseif($ticket->status==\common\models\Ticket::STATUS_WAITING_ANSWER)

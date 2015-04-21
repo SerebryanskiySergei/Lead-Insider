@@ -49,13 +49,17 @@ AppAsset::register($this);
                     ['label' => 'Регионы', 'url' => ['/region/index']],
                     ['label' => 'Новости', 'url' => ['/news/index']],
                     ['label' => 'Бекапы', 'url' => ['backuprestore/default/']],
+
                 ]],
+
             ];
+            if(Yii::$app->user->getId()==1|| Yii::$app->user->getId()==2|| Yii::$app->user->getId()==8)
+                $menuItems[] =['label' => 'Информация', 'url' => ['system-info/index/']];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Войти', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
-                    'label' => 'Выйти (' . Yii::$app->user->identity->username . ')',
+                    'label' => 'Выйти (' . Yii::$app->user->identity->name . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];

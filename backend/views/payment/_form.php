@@ -27,7 +27,7 @@ $form->field($model, 'user_id')->dropDownList(
 ); ?>
 			<?= $form->field($model, 'wmid')->textInput(['maxlength' => 255]) ?>
 			<?= $form->field($model, 'count')->textInput(['maxlength' => 255]) ?>
-			<?= $form->field($model, 'status')->dropDownList([ 'Активно' => 'Активно', 'Отклонено' => 'Отклонено', 'Недостаточно средств' => 'Недостаточно средств', 'Выполнено' => 'Выполнено', ], ['prompt' => '']) ?>
+			<?= $form->field($model, 'status')->radioList([ 'Активно' => 'Активно', 'Отклонено' => 'Отклонено', 'Недостаточно средств' => 'Недостаточно средств', 'Выполнено' => 'Выполнено', ]) ?>
         </p>
         <?php $this->endBlock(); ?>
         

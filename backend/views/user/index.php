@@ -74,21 +74,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
         
-			'id',
-			'username',
-			'password_hash',
-			'auth_key',
-			'password_reset_token',
+//			'id',
+//			'password_hash',
+//			'auth_key',
+//			'password_reset_token',
 			'email:email',
-			'status',
-			/*'created_at'*/
+//			'status',
+//			'created_at',
 			/*'updated_at'*/
-			/*'name'*/
-			/*'surname'*/
-			/*'phone'*/
-			/*'balance'*/
-			/*'ref'*/
-			/*'role'*/
+			'name',
+			'surname',
+			'phone',
+			'balance',
+			'ref',
+			'role',
+			/*'email_confirm_token:email'*/
             [
                 'class' => 'yii\grid\ActionColumn',
                 'urlCreator' => function($action, $model, $key, $index) {

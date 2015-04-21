@@ -8,7 +8,6 @@ use Yii;
  * This is the base-model class for table "user".
  *
  * @property integer $id
- * @property string $username
  * @property string $password_hash
  * @property string $auth_key
  * @property string $password_reset_token
@@ -22,6 +21,7 @@ use Yii;
  * @property double $balance
  * @property string $ref
  * @property string $role
+ * @property string $email_confirm_token
  *
  * @property Payment[] $payments
  * @property Statistic[] $statistics
@@ -44,11 +44,11 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password_hash', 'auth_key', 'email', 'created_at', 'updated_at', 'ref'], 'required'],
+            [['password_hash', 'auth_key', 'email', 'created_at', 'updated_at', 'ref'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['balance'], 'number'],
             [['role'], 'string'],
-            [['username', 'password_hash', 'password_reset_token', 'email', 'name', 'surname', 'phone', 'ref'], 'string', 'max' => 255],
+            [['password_hash', 'password_reset_token', 'email', 'name', 'surname', 'phone', 'ref', 'email_confirm_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32]
         ];
     }
@@ -60,7 +60,6 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'username' => Yii::t('app', 'Username'),
             'password_hash' => Yii::t('app', 'Password Hash'),
             'auth_key' => Yii::t('app', 'Auth Key'),
             'password_reset_token' => Yii::t('app', 'Password Reset Token'),
@@ -74,6 +73,7 @@ class User extends \yii\db\ActiveRecord
             'balance' => Yii::t('app', 'Balance'),
             'ref' => Yii::t('app', 'Ref'),
             'role' => Yii::t('app', 'Role'),
+            'email_confirm_token' => Yii::t('app', 'Email Confirm Token'),
         ];
     }
 

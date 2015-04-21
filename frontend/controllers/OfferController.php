@@ -39,7 +39,7 @@ class OfferController extends Controller
      */
     public function actionIndex()
     {
-        $offers = Offer::find()->all();
+        $offers = Offer::find()->where(['status'=>'active'])->all();
         Url::remember();
         return $this->render('index', ['offers' => $offers]);
     }
@@ -59,7 +59,7 @@ class OfferController extends Controller
 
 
     public function actionStatistic($id){
-        $statistic= Statistic::find()->where(['offer_id'=>$id])->all();
+        $statistic= Statistic::find()->where(['offer_id'=>$id,'user_ref_id'=>\Yii::$app->user->getId()])->all();
         $offer= Offer::find()->where(['id'=>$id])->one();
         return $this->render('statistic',['statistic'=>$statistic,'offer'=>$offer]);
     }

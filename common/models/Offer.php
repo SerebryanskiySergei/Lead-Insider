@@ -14,16 +14,18 @@ class Offer extends \common\models\base\Offer
         return [
             'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Название'),
-            'action_id' => Yii::t('app', 'Действие'),
-            'price' => Yii::t('app', 'Цена'),
-            'region' => Yii::t('app', 'Регион'),
+            'action_id' => Yii::t('app', 'Тип действия'),
+            'price' => Yii::t('app', 'Полная цена'),
+            'our_percent' => Yii::t('app', 'Наши проценты'),
+            'status' => Yii::t('app', 'Статус'),
+            'region_id' => Yii::t('app', 'Регион'),
             'lead' => Yii::t('app', 'Лид'),
             'hold' => Yii::t('app', 'Холд'),
             'access_type_id' => Yii::t('app', 'Тип доступа'),
-            'epc' => Yii::t('app', 'CPE'),
+            'cpe' => Yii::t('app', 'EPC'),
             'postclick' => Yii::t('app', 'Постклик'),
             'site' => Yii::t('app', 'Сайт'),
-            'caption' => Yii::t('app', 'Описание'),
+            'caption' => Yii::t('app', 'Описание оффера'),
             'traff_1' => Yii::t('app', 'Дорвеи'),
             'traff_2' => Yii::t('app', 'Баннерная реклама'),
             'traff_3' => Yii::t('app', 'Контекстная реклама'),
@@ -35,7 +37,16 @@ class Offer extends \common\models\base\Offer
             'traff_9' => Yii::t('app', 'Брокеры'),
             'traff_10' => Yii::t('app', 'Cashback'),
             'traff_11' => Yii::t('app', 'Другое'),
-            'create_time' => Yii::t('app', 'Дата создания'),
+            'create_time' => Yii::t('app', 'Дата добавления'),
         ];
     }
+    public function afterSave($insert, $changedAttributes)
+    {
+        if($insert){
+            $offerCount = SystemInfo::findOne(['key'=>'Offer count']);
+            $offerCount->value = (int)$offerCount->value +1;
+            $offerCount->save();
+        }
+    }
+
 }

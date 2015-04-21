@@ -19,15 +19,13 @@ use yii\widgets\ActiveForm;
 
 		<?= $form->field($model, 'id') ?>
 
-		<?= $form->field($model, 'username') ?>
-
 		<?= $form->field($model, 'password_hash') ?>
 
 		<?= $form->field($model, 'auth_key') ?>
 
 		<?= $form->field($model, 'password_reset_token') ?>
 
-		<?php // echo $form->field($model, 'email') ?>
+		<?= $form->field($model, 'email') ?>
 
 		<?php // echo $form->field($model, 'status') ?>
 
@@ -46,6 +44,8 @@ use yii\widgets\ActiveForm;
 		<?php // echo $form->field($model, 'ref') ?>
 
 		<?php // echo $form->field($model, 'role') ?>
+
+		<?php // echo $form->field($model, 'email_confirm_token') ?>
 
 		<div class="form-group">
 			<?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

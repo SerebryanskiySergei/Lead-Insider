@@ -9,4 +9,12 @@ use Yii;
  */
 class Region extends \common\models\base\Region
 {
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'title' => Yii::t('app', 'Название'),
+            'ref_cod' => Yii::t('app', 'Код региона в реферальной ссылке'),
+        ];
+    }
 }

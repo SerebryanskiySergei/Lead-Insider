@@ -12,7 +12,6 @@ use common\models\User;
 class UserSearch extends Model
 {
 	public $id;
-	public $username;
 	public $password_hash;
 	public $auth_key;
 	public $password_reset_token;
@@ -26,12 +25,13 @@ class UserSearch extends Model
 	public $balance;
 	public $ref;
 	public $role;
+	public $email_confirm_token;
 
 	public function rules()
 	{
 		return [
 			[['id', 'status', 'created_at', 'updated_at'], 'integer'],
-			[['username', 'password_hash', 'auth_key', 'password_reset_token', 'email', 'name', 'surname', 'phone', 'ref', 'role'], 'safe'],
+			[['password_hash', 'auth_key', 'password_reset_token', 'email', 'name', 'surname', 'phone', 'ref', 'role', 'email_confirm_token'], 'safe'],
 			[['balance'], 'number'],
 		];
 	}
@@ -43,20 +43,20 @@ class UserSearch extends Model
 	{
 		return [
 			'id' => 'ID',
-			'username' => 'Username',
-			'password_hash' => 'Password Hash',
-			'auth_key' => 'Auth Key',
-			'password_reset_token' => 'Password Reset Token',
+			'password_hash' => 'Хеш-пароль',
+			'auth_key' => 'Ключ авторизации',
+			'password_reset_token' => 'Токен сброса пароля',
 			'email' => 'Email',
-			'status' => 'Status',
-			'created_at' => 'Created At',
-			'updated_at' => 'Updated At',
-			'name' => 'Name',
-			'surname' => 'Surname',
-			'phone' => 'Phone',
-			'balance' => 'Balance',
-			'ref' => 'Ref',
-			'role' => 'Role',
+			'status' => 'Статус',
+			'created_at' => 'Создан',
+			'updated_at' => 'Обновлен',
+			'name' => 'Имя',
+			'surname' => 'Фамилия',
+			'phone' => 'Телефон',
+			'balance' => 'Баланс',
+			'ref' => 'Реферальная ссылка',
+			'role' => 'Роль',
+			'email_confirm_token' => 'Email Confirm Token',
 		];
 	}
 
@@ -79,8 +79,7 @@ class UserSearch extends Model
             'balance' => $this->balance,
         ]);
 
-		$query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
+		$query->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'email', $this->email])
@@ -88,7 +87,8 @@ class UserSearch extends Model
             ->andFilterWhere(['like', 'surname', $this->surname])
             ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'ref', $this->ref])
-            ->andFilterWhere(['like', 'role', $this->role]);
+            ->andFilterWhere(['like', 'role', $this->role])
+            ->andFilterWhere(['like', 'email_confirm_token', $this->email_confirm_token]);
 
 		return $dataProvider;
 	}

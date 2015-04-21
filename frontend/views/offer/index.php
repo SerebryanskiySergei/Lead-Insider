@@ -42,13 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?
                         foreach($offers as $offer){ ?>
                         <tr>
-                            <td><span style="font-weight: bold;"><?= $offer->title ?></span></td>
-                            <td><?= $offer->action->title ?></td>
-                            <td><?= intval((($offer->price)/100)*(100-$offer->our_percent)) ?> руб.</td>
-                            <td><?= $offer->region->title ?></td>
-                            <td><?= $offer->lead ?></td>
-                            <td><?= $offer->cpe ?></td>
-                            <td><?= $offer->hold ?></td>
+                            <td><span style="font-weight: bold;"><?= Html::encode($offer->title) ?></span></td>
+                            <td><?= Html::encode($offer->action->title) ?></td>
+                            <td><?= Html::encode(intval((($offer->price)/100)*(100-$offer->our_percent))) ?> руб.</td>
+                            <td><?= Html::encode($offer->region->title) ?></td>
+                            <td><?= Html::encode($offer->lead) ?></td>
+                            <td><?= Html::encode($offer->cpe) ?></td>
+                            <td><?= Html::encode($offer->hold) ?></td>
                             <td><? if ($offer->accessType->title == 'Доступ')
                                     echo "<button style=\"width:100%;\" class=\"btn btn-primary btn-sm\" type=\"button\"> Получить </button>";
                                 elseif ($offer->accessType->title == 'Перейти') {

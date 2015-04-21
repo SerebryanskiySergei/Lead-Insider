@@ -123,8 +123,21 @@ class ScriptController extends \yii\web\Controller
             }
             $date = new \DateTime();
             $statistic = Statistic::find()->where(['date' => $date->format('Y-m-d'), 'user_ref_id' => $user->id, 'offer_id' => $offer->id])->one();
-            if ($user != null && $offer != null && $statistic == null)
-                $response['errors'][] = 'Item with taken parameters does not exist.';
+            if ($user != null && $offer != null && $statistic == null) {
+                $statistic = new Statistic();
+                $statistic->date = $date->format('Y-m-d');
+                $statistic->hits = 0;
+                $statistic->leads = 0;
+                $statistic->visitors = 0;
+                $statistic->confirmed = 0;
+                $statistic->question = 0;
+                $statistic->warning = 0;
+                $statistic->hold = 0;
+                $statistic->profit = 0;
+                $statistic->tb = 0;
+                $statistic->user_ref_id = $user->id;
+                $statistic->offer_id = $offer->id;
+            }
             if($statistic != null)
                 $statistic->hits++;
             //save model, if that fails, get its validation errors:

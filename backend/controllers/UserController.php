@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use common\models\User;
+use backend\models\UserBackend;
 use common\models\UserSearch;
 use yii\web\Controller;
 use yii\web\HttpException;
@@ -66,7 +66,7 @@ class UserController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model = new User;
+		$model = new UserBackend;
 
 		try {
             if ($model->load($_POST) && $model->save()) {
@@ -116,12 +116,12 @@ class UserController extends Controller
 	 * Finds the User model based on its primary key value.
 	 * If the model is not found, a 404 HTTP exception will be thrown.
 	 * @param integer $id
-	 * @return User the loaded model
+	 * @return UserBacked the loaded model
 	 * @throws HttpException if the model cannot be found
 	 */
 	protected function findModel($id)
 	{
-		if (($model = User::findOne($id)) !== null) {
+		if (($model = UserBackend::findOne($id)) !== null) {
 			return $model;
 		} else {
 			throw new HttpException(404, 'The requested page does not exist.');

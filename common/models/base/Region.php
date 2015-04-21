@@ -40,8 +40,8 @@ class Region extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'title' => Yii::t('app', 'Title'),
-            'ref_cod' => Yii::t('app', 'Ref Cod'),
+            'title' => Yii::t('app', 'Название'),
+            'ref_cod' => Yii::t('app', 'Код региона в реферальной ссылке'),
         ];
     }
 

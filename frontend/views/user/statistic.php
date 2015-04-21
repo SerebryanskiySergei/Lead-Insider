@@ -40,6 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <th>Посетители</th>
                                     <th>ТБ</th>
                                     <th>Лиды</th>
+                                    <th><span class="fa fa-check"></span></th>
+                                    <th><span class="fa fa-question"></span></th>
+                                    <th><span class="fa fa-exclamation-triangle"></th>
                                     <th>EPC</th>
                                     <th>Холд</th>
                                     <th>Профит</th>
@@ -52,6 +55,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <td>".$stat->visitors."</td>
                                     <td>".$stat->tb."</td>
                                     <td>".$stat->leads."</td>
+                                    <td>".$stat->confirmed."</td>
+                                    <td>".$stat->question."</td>
+                                    <td>".$stat->warning."</td>
                                     <td>".$stat->offer->cpe."</td>
                                     <td>".$stat->hold."</td>
                                     <td>".$stat->profit."</td>

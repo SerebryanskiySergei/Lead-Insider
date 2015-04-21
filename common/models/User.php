@@ -14,6 +14,7 @@ class User extends \common\models\base\User implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    const STATUS_WAITING_VALIDATION= 15;
 
     const ROLE_WEBMASTER = "webmaster";
     const ROLE_ADVERTISER = "advertiser";
@@ -36,38 +37,61 @@ class User extends \common\models\base\User implements IdentityInterface
             TimestampBehavior::className(),
         ];
     }
+    public function getStatusName()
+    {
+        $statuses = self::getStatusesArray();
+        return isset($statuses[$this->status]) ? $statuses[$this->status] : '';
+    }
+
+    public static function getStatusesArray()
+    {
+        return [
+            self::STATUS_DELETED => 'Заблокирован',
+            self::STATUS_ACTIVE => 'Активен',
+            self::STATUS_WAITING_VALIDATION => 'Ожидает подтверждения',
+        ];
+    }
     public function attributeLabels()
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'username' => Yii::t('app', 'Username'),
-            'password_hash' => Yii::t('app', 'Password Hash'),
-            'auth_key' => Yii::t('app', 'Auth Key'),
-            'password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'username' => Yii::t('app', 'Имя пользователя'),
+            'password_hash' => Yii::t('app', 'Хеш-пароль'),
+            'auth_key' => Yii::t('app', 'Ключ авторизации'),
+            'password_reset_token' => Yii::t('app', 'Токен сброса пароля'),
             'email' => Yii::t('app', 'Email'),
-            'status' => Yii::t('app', 'Status'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'name' => Yii::t('app', 'Name'),
-            'surname' => Yii::t('app', 'Surname'),
-            'phone' => Yii::t('app', 'Phone'),
-            'balance' => Yii::t('app', 'Balance'),
-            'ref' => Yii::t('app', 'Ref'),
-            'role' => Yii::t('app', 'Role'),
+            'status' => Yii::t('app', 'Статус'),
+            'created_at' => Yii::t('app', 'Создан'),
+            'updated_at' => Yii::t('app', 'Обновлен'),
+            'name' => Yii::t('app', 'Имя'),
+            'surname' => Yii::t('app', 'Фамилия'),
+            'phone' => Yii::t('app', 'Телефон'),
+            'balance' => Yii::t('app', 'Баланс'),
+            'ref' => Yii::t('app', 'Реферальная ссылка'),
+            'role' => Yii::t('app', 'Роль'),
+            'email_confirm_token' => Yii::t('app', 'Токен подтверждения почты'),
+
         ];
     }
-
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
+            ['email', 'required'],
+            ['email', 'email'],
+            ['email', 'unique', 'targetClass' => self::className(), 'message' => 'This email address has already been taken.'],
+            ['email', 'string', 'max' => 255],
+
+            ['status', 'integer'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['name','surname','phone'] , 'string','max'=>'255']
+            ['status', 'in', 'range' => array_keys(self::getStatusesArray())],
+
+            [['name','surname','phone'],'safe']
         ];
     }
+
 
     /**
      * @inheritdoc
@@ -199,4 +223,28 @@ class User extends \common\models\base\User implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    /**
+     * @param string $email_confirm_token
+     * @return static|null
+     */
+    public static function findByEmailConfirmToken($email_confirm_token)
+    {
+        return static::findOne(['email_confirm_token' => $email_confirm_token, 'status' => self::STATUS_WAITING_VALIDATION]);
+    }
+    /**
+     * Generates email confirmation token
+     */
+    public function generateEmailConfirmToken()
+    {
+        $this->email_confirm_token = Yii::$app->security->generateRandomString();
+    }
+    /**
+     * Removes email confirmation token
+     */
+    public function removeEmailConfirmToken()
+    {
+        $this->email_confirm_token = null;
+    }
+
 }

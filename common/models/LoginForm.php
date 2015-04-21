@@ -49,6 +49,9 @@ class LoginForm extends Model
             if ($user && $user->status==User::STATUS_DELETED) {
                 $this->addError($attribute, 'Вы забанены.');
             }
+            if ($user && $user->status==User::STATUS_WAITING_VALIDATION) {
+                $this->addError($attribute, 'Ваш аккаунт не подтвержден.');
+            }
         }
     }
 

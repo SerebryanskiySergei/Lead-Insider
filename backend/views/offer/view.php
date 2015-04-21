@@ -95,6 +95,47 @@ $this->params['breadcrumbs'][] = 'View';
 
 
     
+<?php $this->beginBlock('News'); ?>
+<p class='pull-right'>
+  <?= \yii\helpers\Html::a(
+            '<span class="glyphicon glyphicon-list"></span> List All News',
+            ['news/index'],
+            ['class'=>'btn text-muted btn-xs']
+        ) ?>
+  <?= \yii\helpers\Html::a(
+            '<span class="glyphicon glyphicon-plus"></span> New News',
+            ['news/create', 'News'=>['offer_id'=>$model->id]],
+            ['class'=>'btn btn-success btn-xs']
+        ) ?>
+</p><div class='clearfix'></div>
+<?php Pjax::begin(['id'=>'pjax-News','linkSelector'=>'#pjax-News ul.pagination a']) ?>
+<?= \yii\grid\GridView::widget([
+    'dataProvider' => new \yii\data\ActiveDataProvider(['query' => $model->getNews(), 'pagination' => ['pageSize' => 10]]),
+    'columns' => [			'id',
+			'title',
+			'text:ntext',
+			'category',
+			'create_date',
+[
+    'class'      => 'yii\grid\ActionColumn',
+    'template'   => '{view} {update}',
+    'contentOptions' => ['nowrap'=>'nowrap'],
+    'urlCreator' => function($action, $model, $key, $index) {
+        // using the column name as key, not mapping to 'id' like the standard generator
+        $params = is_array($key) ? $key : [$model->primaryKey()[0] => (string) $key];
+        $params[0] = 'news' . '/' . $action;
+        return \yii\helpers\Url::toRoute($params);
+    },
+    'buttons'    => [
+        
+    ],
+    'controller' => 'news'
+],]
+]);?>
+<?php Pjax::end() ?>
+<?php $this->endBlock() ?>
+
+
 <?php $this->beginBlock('Statistics'); ?>
 <p class='pull-right'>
   <?= \yii\helpers\Html::a(
@@ -161,6 +202,10 @@ $this->params['breadcrumbs'][] = 'View';
     'label'   => '<span class="glyphicon glyphicon-asterisk"></span> Offer',
     'content' => $this->blocks['common\models\Offer'],
     'active'  => true,
+],[
+    'label'   => '<small><span class="glyphicon glyphicon-paperclip"></span> News</small>',
+    'content' => $this->blocks['News'],
+    'active'  => false,
 ],[
     'label'   => '<small><span class="glyphicon glyphicon-paperclip"></span> Statistics</small>',
     'content' => $this->blocks['Statistics'],

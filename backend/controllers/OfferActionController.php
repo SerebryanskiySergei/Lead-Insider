@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use common\models\OfferAction;
-use backend\models\OfferActionSearch;
+use common\models\OfferActionSearch;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\filters\VerbFilter;

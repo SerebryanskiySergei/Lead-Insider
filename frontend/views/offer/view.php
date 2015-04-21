@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 * @var common\models\Offer $model
 */
 
-$this->title = 'Просмотр оффера ' . $model->title . '';
+$this->title = 'Просмотр оффера ';
 $this->params['breadcrumbs'][] = ['label' => 'Офферы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => (string)$model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title;
@@ -31,9 +31,9 @@ $bundle = \backend\assets\AppAsset::register($this);
             </div>
             <div class="va-t m30">
 
-                <h2 style="margin-top:0px;"><?=$model->title?><small> <?=$model->action->title?> </small></h2>
-                <p >Вебсайт: <a target="_blank" href="<?=$model->site?>"><?=$model->site?></a></p>
-                <p >Дата добавления оффера: <?=Yii::$app->formatter->asDate($model->create_time)?></p>
+                <h2 style="margin-top:0px;"><?=Html::encode($model->title)?><small> <?=Html::encode($model->action->title)?> </small></h2>
+                <p >Вебсайт: <a target="_blank" href="<?=Html::encode($model->site)?>"><?=Html::encode($model->site)?></a></p>
+                <p >Дата добавления оффера: <?=Yii::$app->formatter->asDate(Html::encode($model->create_time))?></p>
                 <a  style="width:150px;" href="<?=\yii\helpers\Url::toRoute(['statistic','id'=>$model->id])?>" class="btn btn-success btn-gradient dark btn-block">Статистика</a>
             </div>
         </div>
@@ -70,15 +70,15 @@ $bundle = \backend\assets\AppAsset::register($this);
                         <div class="panel-body pb5">
                             <dl class="dl-horizontal">
                                 <dt>Холд</dt>
-                                <dd><?=$model->hold?> дней</dd>
+                                <dd><?=Html::encode($model->hold)?> дней</dd>
                                 <dt>Таргетинг</dt>
-                                <dd><?=$model->region->title?></dd>
+                                <dd><?=Html::encode($model->region->title)?></dd>
                                 <dt>Постклик</dt>
-                                <dd><?=$model->postclick?> дней</dd>
+                                <dd><?=Html::encode($model->postclick)?> дней</dd>
                                 <dt>Кол-во лидов в сутки</dt>
-                                <dd><?=$model->lead?></dd>
+                                <dd><?=Html::encode($model->lead)?></dd>
                                 <dt>Оплата</dt>
-                                <dd><?=$model->price?> рублей</dd>
+                                <dd><?=Html::encode(intval((($model->price)/100)*(100-$model->our_percent)))?> рублей</dd>
                             </dl>
 
 

@@ -7,7 +7,7 @@ use yii\helpers\Html;
  * @var common\models\User $model
  */
 
-$this->title = 'Кабинет пользователя' . $model->username . '';
+$this->title = 'Кабинет пользователя' . $model->name . '';
 $this->params['breadcrumbs'][] = 'Настройка аккаунта';
 ?>
 
@@ -35,19 +35,19 @@ $this->params['breadcrumbs'][] = 'Настройка аккаунта';
                         <div class="form-group">
                             <label for="inputStandard" class="col-lg-3 control-label">Имя</label>
                             <div class="col-lg-8">
-                                <input type="text" name="User[name]" id="inputStandard" class="form-control" placeholder="<?=$model->name?>" value="<?=$model->name?>">
+                                <input type="text" name="User[name]" id="inputStandard" class="form-control" placeholder="<?=Html::encode($model->name)?>" value="<?=Html::encode($model->name)?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputStandard" class="col-lg-3 control-label">Фамилия</label>
                             <div class="col-lg-8">
-                                <input type="text" name="User[surname]" id="inputStandard" class="form-control" placeholder="<?=$model->surname?>" value="<?=$model->surname?>">
+                                <input type="text" name="User[surname]" id="inputStandard" class="form-control" placeholder="<?=Html::encode($model->surname)?>" value="<?=Html::encode($model->surname)?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputStandard" class="col-lg-3 control-label">Телефон</label>
                             <div class="col-lg-8">
-                                <input type="text" name="User[phone]" id="maskedPhone" class="form-control phone" maxlength="10" autocomplete="off" placeholder="<?=$model->phone?>" value="<?=$model->phone?>">
+                                <input type="text" name="User[phone]" id="maskedPhone" class="form-control phone" maxlength="10" autocomplete="off" placeholder="<?=Html::encode($model->phone)?>" value="<?=Html::encode($model->phone)?>">
                             </div>
                         </div>
                         <input type="hidden" name="_csrf" value="nT2U2jEvCzUej3sFTtF0E_SJD2VvFCJS">

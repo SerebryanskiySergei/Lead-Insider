@@ -20,4 +20,24 @@ class Ticket extends \common\models\base\Ticket
             [['title'], 'string', 'max' => 255]
         ];
     }
+    public function afterSave($insert, $changedAttributes)
+    {
+        if($insert){
+            Yii::$app->mailer->compose('ticketCreated', ['ticket' =>$this])
+                ->setFrom([Yii::$app->params['supportEmail'] => "Lead.Insider"])
+                ->setTo(Yii::$app->params['supportEmail'])
+                ->setSubject('Создан тикет на Lead.Insider')
+                ->send();
+        }
+    }
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'sender_id' => Yii::t('app', 'Отправитель'),
+            'title' => Yii::t('app', 'Заголовок'),
+            'status' => Yii::t('app', 'Статус'),
+            'message' => Yii::t('app', 'Сообщение'),
+        ];
+    }
 }

@@ -31,6 +31,8 @@ return [
         'setWritable' => [
             'backend/runtime',
             'backend/web/assets',
+            'advertiser/runtime',
+            'advertiser/web/assets',
             'frontend/runtime',
             'frontend/web/assets',
         ],
@@ -47,6 +49,8 @@ return [
         'setWritable' => [
             'backend/runtime',
             'backend/web/assets',
+            'advertiser/runtime',
+            'advertiser/web/assets',
             'frontend/runtime',
             'frontend/web/assets',
         ],

@@ -2,6 +2,8 @@
 namespace frontend\controllers;
 
 use common\models\base\TicketComment;
+use common\models\ConfirmEmailForm;
+use common\models\SystemInfo;
 use common\models\Ticket;
 use Yii;
 use common\models\LoginForm;
@@ -10,6 +12,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
+use yii\mail\BaseMailer;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -21,6 +24,7 @@ use yii\filters\AccessControl;
 class SiteController extends Controller
 {
     public $layout="main";
+
     /**
      * @inheritdoc
      */
@@ -32,8 +36,12 @@ class SiteController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions'=>['login','error','signup'],
+                        'actions'=>['login','error','signup','confirm-email'],
                         'roles' => ['?'],
+                    ],
+                    [
+                        'actions' => ['error'],
+                        'allow' => true,
                     ],
                     [
                         'allow' => true,
@@ -120,9 +128,8 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
+                Yii::$app->getSession()->setFlash('success', 'Подтвердите ваш электронный адрес.');
+                return $this->goHome();
             }
         }
 
@@ -167,4 +174,25 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionConfirmEmail($token)
+    {
+        try {
+            $model = new ConfirmEmailForm($token);
+        } catch (InvalidParamException $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->confirmEmail()) {
+            Yii::$app->getSession()->setFlash('success', 'Спасибо! Ваш Email успешно подтверждён.');
+            $userCOunt = SystemInfo::findOne(['key'=>'Webmaster count']);
+            $userCOunt->value = (int)$userCOunt->value +1;
+            $userCOunt->save();
+        } else {
+            Yii::$app->getSession()->setFlash('error', 'Ошибка подтверждения Email.');
+        }
+
+        return $this->goHome();
+    }
+
 }

@@ -59,6 +59,7 @@ class UserController extends Controller
 	{
 		$model = $this->findModel($id);
 
+//        var_dump($model->validate());exit;
 		if ($model->load($_POST) && $model->save()) {
             return $this->redirect(Url::previous());
 		} else {

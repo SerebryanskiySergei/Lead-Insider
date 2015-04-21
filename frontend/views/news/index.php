@@ -36,10 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                             <?
                                             if($dates[0]) {
-                                                foreach ($dates[0] as $date) {
-                                                    echo "<h3 style=\"margin-top:0px;\"> Новости за $date</h3>";
+                                                foreach ($dates as $date) {
+                                                    echo "<h3 style=\"margin-top:0px;\"> Новости за ".$date['create_date']."</h3>";
                                                     foreach ($news as $new) {
-                                                        if ($new->create_date == $date) {
+                                                        if ($new->create_date == $date['create_date']) {
                                                             echo "<blockquote class=\"";
                                                             switch ($new->category) {
                                                                 case 0:
@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     echo "blockquote-info";
                                                                     break;
                                                             }
-                                                            echo "\"><p>" . $new->title . " | " . $new->text . "</p>";
+                                                            echo "\"><p><strong>" . Html::encode($new->title) . " </strong><br> " . $new->text . "</p>";
                                                             echo "<small><span class=\"text-info\">Категория: ";
                                                             switch ($new->category) {
                                                                 case 0:
@@ -90,8 +90,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     break;
                                                             }
                                                             echo "</span>";
-                                                            if ($new->category == 1 || $new->category == 2)
-                                                                echo "| <a href=\"" . \yii\helpers\Url::toRoute(['offer/view', 'id' => $new->offer_id]) . "\">Перейти к офферу</a>";
+                                                            if ($new->category == 1 || $new->category == 2 || $new->category == 0)
+                                                                echo " | <a href=\"" . \yii\helpers\Url::toRoute(['offer/view', 'id' => $new->offer_id]) . "\">Перейти к офферу</a>";
                                                             echo "</small></blockquote>";
                                                         }
                                                     }

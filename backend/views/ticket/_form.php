@@ -26,7 +26,7 @@ $form->field($model, 'sender_id')->dropDownList(
     ['prompt'=>'Choose...']
 ); ?>
 			<?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
-			<?= $form->field($model, 'status')->textInput(['maxlength' => 255]) ?>
+<!--			--><?//= $form->field($model, 'status')->textInput(['maxlength' => 255]) ?>
 			<?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
         </p>
         <?php $this->endBlock(); ?>

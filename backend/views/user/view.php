@@ -39,7 +39,6 @@ $this->params['breadcrumbs'][] = 'View';
     'model' => $model,
     'attributes' => [
     			'id',
-			'username',
 			'password_hash',
 			'auth_key',
 			'password_reset_token',
@@ -53,6 +52,7 @@ $this->params['breadcrumbs'][] = 'View';
 			'balance',
 			'ref',
 			'role',
+			'email_confirm_token:email',
     ],
     ]); ?>
 
