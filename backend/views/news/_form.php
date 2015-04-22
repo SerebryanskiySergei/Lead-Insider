@@ -27,7 +27,10 @@ use yii\bootstrap\ActiveForm;
                 \yii\helpers\ArrayHelper::map(common\models\Offer::find()->all(),'id','title'),
                 ['prompt'=>'Choose...']
             ); ?>
+
             <?= $form->field($model, 'category')->radioList([\common\models\News::NOVINKI=>'Новинки',\common\models\News::CHANGE_OFFER=>'Изменения оффера',\common\models\News::STOP_OFFER=>'Приостановка оффера',\common\models\News::CHANGES_GEO=>'Изменения Гео',\common\models\News::NEW_LENDING=>'Новые лендинги',\common\models\News::SALES=>'Акции',\common\models\News::SYSTEM_TICKETS=>'Системные тикеты']) ?>
+            <?= $form->field($model, 'visibility')->radioList([\common\models\News::VISIBILITY_ALL=>'Показывать всем',\common\models\News::VISIBILITY_NOONE=>'Не показывать',\common\models\News::VISIBILITY_ADVERTISER=>'Для рекламодателей',\common\models\News::VISIBILITY_WEBMASTER=>'Для вебмастеров']) ?>
+
         </p>
         <?php $this->endBlock(); ?>
         

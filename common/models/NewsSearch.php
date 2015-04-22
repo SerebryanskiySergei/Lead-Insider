@@ -17,12 +17,13 @@ class NewsSearch extends Model
 	public $category;
 	public $create_date;
 	public $offer_id;
+	public $visibility;
 
 	public function rules()
 	{
 		return [
 			[['id', 'category', 'offer_id'], 'integer'],
-			[['title', 'text', 'create_date'], 'safe'],
+			[['title', 'text', 'create_date', 'visibility'], 'safe'],
 		];
 	}
 
@@ -33,11 +34,12 @@ class NewsSearch extends Model
 	{
 		return [
 			'id' => 'ID',
-			'title' => 'Title',
-			'text' => 'Text',
-			'category' => 'Category',
-			'create_date' => 'Create Date',
-			'offer_id' => 'Offer ID',
+			'title' => 'Заголовок',
+			'text' => 'Текст новости',
+			'category' => 'Категория',
+			'create_date' => 'Дата публикации',
+			'offer_id' => 'Привязанный оффер',
+			'visibility' => 'Visibility',
 		];
 	}
 
@@ -60,7 +62,8 @@ class NewsSearch extends Model
         ]);
 
 		$query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'text', $this->text]);
+            ->andFilterWhere(['like', 'text', $this->text])
+            ->andFilterWhere(['like', 'visibility', $this->visibility]);
 
 		return $dataProvider;
 	}

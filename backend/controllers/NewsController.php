@@ -38,7 +38,6 @@ class NewsController extends Controller
 	{
 		$searchModel = new NewsSearch;
 		$dataProvider = $searchModel->search($_GET);
-
         Url::remember();
 		return $this->render('index', [
 			'dataProvider' => $dataProvider,

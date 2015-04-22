@@ -49,6 +49,7 @@ $this->params['breadcrumbs'][] = 'View';
     'attribute'=>'offer_id',
     'value' => ($model->getOffer()->one() ? Html::a($model->getOffer()->one()->title, ['offer/view', 'id' => $model->getOffer()->one()->id,]) : '<span class="label label-warning">?</span>'),
 ],
+			'visibility',
     ],
     ]); ?>
 

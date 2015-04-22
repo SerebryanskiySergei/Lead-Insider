@@ -13,6 +13,7 @@ use Yii;
  * @property integer $category
  * @property string $create_date
  * @property integer $offer_id
+ * @property string $visibility
  *
  * @property Offer $offer
  */
@@ -33,7 +34,7 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'text', 'category', 'create_date'], 'required'],
-            [['text'], 'string'],
+            [['text', 'visibility'], 'string'],
             [['category', 'offer_id'], 'integer'],
             [['create_date'], 'safe'],
             [['title'], 'string', 'max' => 255]
@@ -52,6 +53,7 @@ class News extends \yii\db\ActiveRecord
             'category' => Yii::t('app', 'Category'),
             'create_date' => Yii::t('app', 'Create Date'),
             'offer_id' => Yii::t('app', 'Offer ID'),
+            'visibility' => Yii::t('app', 'Visibility'),
         ];
     }
 

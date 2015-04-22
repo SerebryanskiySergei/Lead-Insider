@@ -15,7 +15,8 @@ class UserRoleRule extends Rule
             $role = $user->role; //Значение из поля role базы данных
             if ($item->name === 'admin') {
                 return $role == User::ROLE_ADMIN;
-            } elseif ($item->name === 'advertiser') {
+            }
+            elseif ($item->name === 'advertiser') {
                 //moder является потомком admin, который получает его права
                 return $role == User::ROLE_ADMIN || $role == User::ROLE_ADVERTISER;
             }

@@ -38,6 +38,7 @@ class Offer extends \common\models\base\Offer
             'traff_10' => Yii::t('app', 'Cashback'),
             'traff_11' => Yii::t('app', 'Другое'),
             'create_time' => Yii::t('app', 'Дата добавления'),
+            'advertiser_id' => 'Рекламодатель',
         ];
     }
     public function afterSave($insert, $changedAttributes)

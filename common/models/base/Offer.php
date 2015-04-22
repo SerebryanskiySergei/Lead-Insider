@@ -33,11 +33,13 @@ use Yii;
  * @property string $traff_10
  * @property string $traff_11
  * @property string $create_time
+ * @property integer $advertiser_id
  *
  * @property News[] $news
  * @property AccessType $accessType
  * @property OfferAction $action
  * @property Region $region
+ * @property User $advertiser
  * @property Statistic[] $statistics
  */
 class Offer extends \yii\db\ActiveRecord
@@ -57,7 +59,7 @@ class Offer extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'action_id', 'price', 'region_id', 'lead', 'hold', 'access_type_id', 'cpe', 'postclick', 'site', 'caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'traff_11', 'create_time'], 'required'],
-            [['action_id', 'our_percent', 'region_id', 'hold', 'access_type_id', 'postclick'], 'integer'],
+            [['action_id', 'our_percent', 'region_id', 'hold', 'access_type_id', 'postclick', 'advertiser_id'], 'integer'],
             [['price'], 'number'],
             [['status', 'caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'traff_11'], 'string'],
             [['create_time'], 'safe'],
@@ -97,6 +99,7 @@ class Offer extends \yii\db\ActiveRecord
             'traff_10' => Yii::t('app', 'Traff 10'),
             'traff_11' => Yii::t('app', 'Traff 11'),
             'create_time' => Yii::t('app', 'Create Time'),
+            'advertiser_id' => Yii::t('app', 'Advertiser ID'),
         ];
     }
 
@@ -130,6 +133,14 @@ class Offer extends \yii\db\ActiveRecord
     public function getRegion()
     {
         return $this->hasOne(\common\models\Region::className(), ['id' => 'region_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAdvertiser()
+    {
+        return $this->hasOne(\common\models\User::className(), ['id' => 'advertiser_id']);
     }
 
     /**

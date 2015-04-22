@@ -66,7 +66,7 @@ class ScriptController extends \yii\web\Controller
             if ($user == null) {
                 $response['errors'][] = 'Cant find a person with this personal refernce';
             }
-            $offer = Offer::find()->where(['site' => $data['site']])->one();
+            $offer = Offer::find()->where(['site' => $data['site'],'status'=>'active'])->one();
             if ($offer == null) {
                 $response['errors'][] = 'Cant find an offer with this site';
             }
@@ -117,7 +117,7 @@ class ScriptController extends \yii\web\Controller
             if ($user == null) {
                 $response['errors'][] = 'Cant find a person with this personal refernce';
             }
-            $offer = Offer::find()->where(['site' => $data['site']])->one();
+            $offer = Offer::find()->where(['site' => $data['site'],'status'=>'active'])->one();
             if ($offer == null) {
                 $response['errors'][] = 'Cant find an offer with this site';
             }
@@ -163,7 +163,7 @@ class ScriptController extends \yii\web\Controller
             if ($user == null) {
                 $response['errors'][] = 'Cant find a person with this personal refernce';
             }
-            $offer = Offer::find()->where(['site' => $data['site']])->one();
+            $offer = Offer::find()->where(['site' => $data['site'],'status'=>'active'])->one();
             if ($offer == null) {
                 $response['errors'][] = 'Cant find an offer with this site';
             }

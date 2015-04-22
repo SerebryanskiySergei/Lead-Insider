@@ -37,11 +37,12 @@ class OfferSearch extends Model
 	public $traff_10;
 	public $traff_11;
 	public $create_time;
+	public $advertiser_id;
 
 	public function rules()
 	{
 		return [
-			[['id', 'action_id', 'our_percent', 'region_id', 'hold', 'access_type_id', 'postclick'], 'integer'],
+			[['id', 'action_id', 'our_percent', 'region_id', 'hold', 'access_type_id', 'postclick', 'advertiser_id'], 'integer'],
 			[['title', 'status', 'lead', 'cpe', 'site', 'caption', 'traff_1', 'traff_2', 'traff_3', 'traff_4', 'traff_5', 'traff_6', 'traff_7', 'traff_8', 'traff_9', 'traff_10', 'traff_11', 'create_time'], 'safe'],
 			[['price'], 'number'],
 		];
@@ -55,18 +56,18 @@ class OfferSearch extends Model
 		return [
 			'id' => 'ID',
 			'title' => 'Название',
-			'action_id' => 'Действие',
-			'price' => 'Цена',
-			'our_percent' => 'Our Percent',
-			'status' => 'Status',
-			'region_id' => 'Region ID',
+			'action_id' => 'Тип действия',
+			'price' => 'Полная цена',
+			'our_percent' => 'Наши проценты',
+			'status' => 'Статус',
+			'region_id' => 'Регион',
 			'lead' => 'Лид',
 			'hold' => 'Холд',
 			'access_type_id' => 'Тип доступа',
-			'cpe' => 'Cpe',
+			'cpe' => 'EPC',
 			'postclick' => 'Постклик',
 			'site' => 'Сайт',
-			'caption' => 'Описание',
+			'caption' => 'Описание оффера',
 			'traff_1' => 'Дорвеи',
 			'traff_2' => 'Баннерная реклама',
 			'traff_3' => 'Контекстная реклама',
@@ -78,7 +79,8 @@ class OfferSearch extends Model
 			'traff_9' => 'Брокеры',
 			'traff_10' => 'Cashback',
 			'traff_11' => 'Другое',
-			'create_time' => 'Дата создания',
+			'create_time' => 'Дата добавления',
+			'advertiser_id' => 'Рекламодатель',
 		];
 	}
 
@@ -103,6 +105,7 @@ class OfferSearch extends Model
             'access_type_id' => $this->access_type_id,
             'postclick' => $this->postclick,
             'create_time' => $this->create_time,
+            'advertiser_id' => $this->advertiser_id,
         ]);
 
 		$query->andFilterWhere(['like', 'title', $this->title])

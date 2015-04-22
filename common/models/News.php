@@ -17,10 +17,15 @@ class News extends \common\models\base\News
     const CHANGES_GEO=5;
     const SALES=6;
 
+    const VISIBILITY_ALL='all';
+    const VISIBILITY_NOONE='no';
+    const VISIBILITY_WEBMASTER='web';
+    const VISIBILITY_ADVERTISER='adv';
+
     public function rules()
     {
         return [
-            [['title', 'text', 'category', 'create_date'], 'required'],
+            [['title', 'text', 'category', 'create_date','visibility'], 'required'],
             [['text'], 'string'],
             [['category', 'offer_id'], 'integer'],
             [['title'], 'string', 'max' => 255]
@@ -73,6 +78,7 @@ class News extends \common\models\base\News
             'category' => Yii::t('app', 'Категория'),
             'create_date' => Yii::t('app', 'Дата публикации'),
             'offer_id' => Yii::t('app', 'Привязанный оффер'),
+            'visibility' => Yii::t('app', 'Видимость'),
         ];
     }
 }

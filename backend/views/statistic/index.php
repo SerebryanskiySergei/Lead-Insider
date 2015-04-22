@@ -1,5 +1,6 @@
 <?php
 
+use kartik\export\ExportMenu;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -16,6 +17,27 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="statistic-index">
 
     <?php //     echo $this->render('_search', ['model' =>$searchModel]);
+    $gridColumns = [
+        ['class' => 'yii\grid\SerialColumn'],
+        'id',
+        'user_ref_id',
+        'date',
+        'hits',
+        'visitors',
+        'tb',
+        'leads',
+        'confirmed',
+        'question',
+        'warning',
+        'hold',
+        'profit',
+        ['class' => 'yii\grid\ActionColumn'],
+    ];
+    echo ExportMenu::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => $gridColumns,
+        'fontAwesome' => false,
+    ]);
     ?>
 
     <div class="clearfix">

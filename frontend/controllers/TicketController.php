@@ -65,8 +65,10 @@ class TicketController extends Controller
             if ($model->load($_POST)) {
                 $model->sender_id=\Yii::$app->user->getId();
                 $model->status=Ticket::STATUS_WAITING_ANSWER;
-                if($model->save())
-                    return $this->redirect(Url::toRoute('ticket/index'));
+                if($model->save()) {
+					\Yii::$app->session->setFlash('success', 'Тикет успешно создан. Мы скоро вам ответим.');
+					return $this->redirect(Url::toRoute('ticket/index'));
+				}
             } elseif (!\Yii::$app->request->isPost) {
                 $model->load($_GET);
             }

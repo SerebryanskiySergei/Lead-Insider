@@ -74,6 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
             },
             "format" => "raw",
 ],
+            'visibility',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'urlCreator' => function($action, $model, $key, $index) {

@@ -2,11 +2,13 @@
 
 namespace frontend\controllers;
 
+use common\models\Offer;
 use common\models\Statistic;
 use common\models\Ticket;
 use common\models\User;
 use common\models\UserSearch;
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\filters\VerbFilter;
@@ -70,7 +72,12 @@ class UserController extends Controller
 	}
 
     public function actionAllstatistic(){
-        $statistic= Statistic::find()->where(['user_ref_id'=>\Yii::$app->user->id])->all();
+		if(Yii::$app->user->can('advertboard'))
+			$statistic= Statistic::find()->where(['offer_id'=>
+				Offer::find()->where(['advertiser_id'=>Yii::$app->user->id])->select('id')->column()
+			])->all();
+		else
+			$statistic= Statistic::find()->where(['user_ref_id'=>\Yii::$app->user->id])->all();
         return $this->render('statistic',['statistic'=>$statistic]);
     }
 

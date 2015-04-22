@@ -47,7 +47,8 @@ class RbacController extends Controller
         $admin->description = 'Администратор';
         $admin->ruleName = $rule->name;
         $auth->add($admin);
-        $auth->addChild($admin, $advertiser);
+        $auth->addChild($admin, $webmaster);
         $auth->addChild($admin,$adminka);
+
     }
 }

@@ -1,9 +1,8 @@
 <?php
 
+use kartik\export\ExportMenu;
 use yii\helpers\Html;
-use yii\grid\GridView;
-use yii\widgets\DetailView;
-use yii\widgets\Pjax;
+
 
 /**
 * @var yii\web\View $this
@@ -34,14 +33,18 @@ $bundle = \backend\assets\AppAsset::register($this);
                 <h2 style="margin-top:0px;"><?=Html::encode($model->title)?><small> <?=Html::encode($model->action->title)?> </small></h2>
                 <p >Вебсайт: <a target="_blank" href="<?=Html::encode($model->site)?>"><?=Html::encode($model->site)?></a></p>
                 <p >Дата добавления оффера: <?=Yii::$app->formatter->asDate(Html::encode($model->create_time))?></p>
-                <a  style="width:150px;" href="<?=\yii\helpers\Url::toRoute(['statistic','id'=>$model->id])?>" class="btn btn-success btn-gradient dark btn-block">Статистика</a>
+                <a  style="width:150px;" href="<?=\yii\helpers\Url::toRoute(['statistic','id'=>$model->id])?>" class="btn btn-success btn-gradient dark ">Статистика</a>
+
+
             </div>
         </div>
+
 
 
         <div class="p25 pt35">
             <div class="row">
                 <div class="col-md-4">
+                    <?if(!Yii::$app->user->can('advertboard')){?>
                     <div class="panel">
                         <div class="panel-heading">
                                     <span class="panel-icon"><i class="fa fa-trophy"></i>
@@ -53,13 +56,14 @@ $bundle = \backend\assets\AppAsset::register($this);
                                 <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-bolt"></i>
                                                 </span>
-                                    <input style="width:100%;" type="text"  class="form-control zip" value="<?=$model->site.'?LIref='.$ref.'&LIaction='.$model->action->id.'&LIregion='.$model->region->ref_cod?>" readonly>
+                                    <input style="width:100%;cursor: default" type="text"  class="form-control zip" value="<?=$model->site.'?LIref='.$ref.'&LIaction='.$model->action->id.'&LIregion='.$model->region->ref_cod?>" readonly>
                                 </div>
                             </dl>
 
 
                         </div>
                     </div>
+                    <?}?>
 
                     <div class="panel">
                         <div class="panel-heading">

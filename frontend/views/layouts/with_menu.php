@@ -153,11 +153,33 @@ $bundle = AppAsset::register($this);
                 <ul class="nav sidebar-menu">
                     <li class="sidebar-label pt20">Панель управления</li>
                     <li>
-                        <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">
+                        <a class="accordion-toggle " href="#">
                             <span class="fa fa-database"></span>
                             <span class="sidebar-title">Офферы</span>
+                            <span class="caret"></span>
                         </a>
+                        <ul class="nav sub-nav" style="">
+                            <?if(Yii::$app->user->can('advertboard')){?>
+                            <li>
+                                    <a type="button" style="cursor: pointer" class="" data-toggle="modal" data-target="#myModal"><span class="glyphicons glyphicons-edit"></span>Добавить оффер</a>
+<!--                                <a href="admin_plugins-panels.html">-->
+<!--                                    <span class="glyphicons glyphicons-edit"></span> Добавить оффер </a>-->
+                            </li>
+                            <li>
+                                <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">
+                                    <span class="glyphicons glyphicons-sort"></span> Мои офферы </a>
+                            </li>
+                            <?}
+                            else{?>
+                                <li>
+                                    <a href="<?=\yii\helpers\Url::toRoute('offer/index')?>">
+                                        <span class="glyphicons glyphicons-sort"></span> Все офферы </a>
+                                </li>
+                            <?}?>
+
+                        </ul>
                     </li>
+
                     <li>
                         <a href="<?=\yii\helpers\Url::toRoute('user/allstatistic')?>">
                             <span class="fa fa-bar-chart"></span>
@@ -213,6 +235,34 @@ $bundle = AppAsset::register($this);
 
         </section>
         <!-- End: Content-Wrapper -->
+        <!-- Modal -->
+        <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Запрос на создание оффера</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="<?=\yii\helpers\Url::toRoute('ticket/create');?>" method="post">
+                            <div class="form-group hidden">
+                                <input type="text" name="Ticket[title]" id="name2" class="form-control" placeholder="Заголовок" value="Запрос на создание оффера">
+                            </div>
+                            <div class="form-group">
+                                <label for="Ticket[message]">Напишите название оффера, его описание и ссылку на сайт.</label>
+                                <textarea style="height: 160px;" class="form-control" id="comment" name="Ticket[message]" ></textarea>
+                            </div>
+                            <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
+                            <!--                                        --><?//= Html::submitButton('Отправить', ['class' => 'btn btn-primary btn-gradient']) ?>
+                            <button class="btn btn-primary btn-gradient" type="submit"> Отправить </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <!-- Start: Right Sidebar -->
@@ -443,6 +493,7 @@ $bundle = AppAsset::register($this);
 
         });
     </script>
+    <!— Yandex.Metrika counter —><script type="text/javascript">(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter29864259 = new Ya.Metrika({id:29864259, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");</script><noscript><div><img src="//mc.yandex.ru/watch/29864259" style="position:absolute; left:-9999px;" alt="" /></div></noscript><!— /Yandex.Metrika counter —>
 
     <!-- END: PAGE SCRIPTS -->
 

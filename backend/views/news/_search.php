@@ -29,6 +29,8 @@ use yii\widgets\ActiveForm;
 
 		<?php // echo $form->field($model, 'offer_id') ?>
 
+		<?php // echo $form->field($model, 'visibility') ?>
+
 		<div class="form-group">
 			<?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
 			<?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

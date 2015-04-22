@@ -60,6 +60,7 @@ $this->params['breadcrumbs'][] = 'Настройка аккаунта';
             </div>
         </div>
 
+        <?if(!Yii::$app->user->can('advertboard')){?>
         <div class="table-layout">
 
             <div class="va-t m30">
@@ -68,6 +69,7 @@ $this->params['breadcrumbs'][] = 'Настройка аккаунта';
 
             </div>
         </div>
+
 
         <div class="p25 pt35">
             <div class="row">
@@ -91,6 +93,7 @@ $this->params['breadcrumbs'][] = 'Настройка аккаунта';
                 </div>
             </div>
         </div>
+        <?}?>
 
 
     </div>

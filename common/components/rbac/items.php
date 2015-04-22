@@ -34,7 +34,7 @@ return [
         'description' => 'Администратор',
         'ruleName' => 'userRole',
         'children' => [
-            'advertiser',
+            'webmaster',
             'adminka',
         ],
     ],

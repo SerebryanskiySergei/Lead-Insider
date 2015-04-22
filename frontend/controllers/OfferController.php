@@ -2,7 +2,9 @@
 
 namespace frontend\controllers;
 
-use common\models\base\User;
+use common\models\OfferSearch;
+use common\models\StatisticSearch;
+use common\models\User;
 use common\models\Offer;
 
 use common\models\Statistic;
@@ -39,7 +41,10 @@ class OfferController extends Controller
      */
     public function actionIndex()
     {
-        $offers = Offer::find()->where(['status'=>'active'])->all();
+        if(\Yii::$app->user->can('advertboard'))
+            $offers = Offer::find()->where(['status'=>'active','advertiser_id'=>\Yii::$app->user->id])->all();
+        else
+            $offers = Offer::find()->where(['status'=>'active'])->all();
         Url::remember();
         return $this->render('index', ['offers' => $offers]);
     }
@@ -51,15 +56,22 @@ class OfferController extends Controller
      */
     public function actionView($id)
     {
+        $offer = $this->findModel($id);
+        if($offer->status!='active')
+            return $this->redirect('index');
         Url::remember();
         return $this->render('view', [
-            'model' => $this->findModel($id), 'ref' => User::findOne(\Yii::$app->user->getId())->ref,
+            'model' => $this->findModel($id),
+            'ref' => User::findOne(\Yii::$app->user->getId())->ref,
         ]);
     }
 
 
     public function actionStatistic($id){
-        $statistic= Statistic::find()->where(['offer_id'=>$id,'user_ref_id'=>\Yii::$app->user->getId()])->all();
+        if(\Yii::$app->user->can('advertboard'))
+            $statistic= Statistic::find()->where(['offer_id'=>$id])->all();
+        else
+            $statistic= Statistic::find()->where(['offer_id'=>$id,'user_ref_id'=>\Yii::$app->user->getId()])->all();
         $offer= Offer::find()->where(['id'=>$id])->one();
         return $this->render('statistic',['statistic'=>$statistic,'offer'=>$offer]);
     }

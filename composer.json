@@ -24,7 +24,8 @@
         "vova07/yii2-imperavi-widget": "*",
         "open-ecommerce/yii2-backuprestore": "dev-master",
         "kartik-v/yii2-grid": "dev-master",
-        "zelenin/yii2-rbac-module": "dev-master"
+        "zelenin/yii2-rbac-module": "dev-master",
+        "kartik-v/yii2-export": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
