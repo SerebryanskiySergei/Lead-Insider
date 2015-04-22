@@ -235,7 +235,7 @@ $bundle = AppAsset::register($this);
 
         </section>
         <!-- End: Content-Wrapper -->
-        <!-- Modal -->
+        <?if(Yii::$app->user->can('advertboard')){?>
         <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -263,6 +263,7 @@ $bundle = AppAsset::register($this);
                 </div>
             </div>
         </div>
+        <?}?>
 
 
         <!-- Start: Right Sidebar -->

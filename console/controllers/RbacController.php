@@ -22,33 +22,32 @@ class RbacController extends Controller
         $advertboard = $auth->createPermission('advertboard');
         $advertboard->description="Панель рекламодателя";
         $auth->add($advertboard);
-        
+
         //Включаем наш обработчик
         $rule = new UserRoleRule();
         $auth->add($rule);
-        
+
         //Добавляем роли
         $webmaster = $auth->createRole('webmaster');
         $webmaster->description = 'Вебмастер';
         $webmaster->ruleName = $rule->name;
         $auth->add($webmaster);
         $auth->addChild($webmaster,$dashboard);
-        
+
         $advertiser = $auth->createRole('advertiser');
         $advertiser->description = 'Рекламодатель';
         $advertiser->ruleName = $rule->name;
         $auth->add($advertiser);
-        
+
         //Добавляем потомков
         $auth->addChild($advertiser, $webmaster);
         $auth->addChild($advertiser, $advertboard);
-        
+
         $admin = $auth->createRole('admin');
         $admin->description = 'Администратор';
         $admin->ruleName = $rule->name;
         $auth->add($admin);
         $auth->addChild($admin, $webmaster);
         $auth->addChild($admin,$adminka);
-
     }
 }

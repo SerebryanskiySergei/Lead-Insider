@@ -18,7 +18,7 @@ class UserRoleRule extends Rule
             }
             elseif ($item->name === 'advertiser') {
                 //moder является потомком admin, который получает его права
-                return $role == User::ROLE_ADMIN || $role == User::ROLE_ADVERTISER;
+                return $role == User::ROLE_ADVERTISER;
             }
             elseif ($item->name === 'webmaster') {
                 return $role == User::ROLE_ADMIN || $role == User::ROLE_ADVERTISER

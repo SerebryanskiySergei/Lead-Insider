@@ -34,7 +34,36 @@ $bundle = \backend\assets\AppAsset::register($this);
                 <p >Вебсайт: <a target="_blank" href="<?=Html::encode($model->site)?>"><?=Html::encode($model->site)?></a></p>
                 <p >Дата добавления оффера: <?=Yii::$app->formatter->asDate(Html::encode($model->create_time))?></p>
                 <a  style="width:150px;" href="<?=\yii\helpers\Url::toRoute(['statistic','id'=>$model->id])?>" class="btn btn-success btn-gradient dark ">Статистика</a>
-
+                <?if(!Yii::$app->user->can('advertiser')){?>
+                    <button type="button"  class="btn btn-info btn-gradient dark " data-toggle="modal" data-target="#myModal">Задать вопрос</button>
+                    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Задать вопрос по офферу</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="<?=\yii\helpers\Url::toRoute('ticket/create');?>" method="post">
+                                        <div class="form-group hidden">
+                                            <input type="text" name="Ticket[title]" id="name2" class="form-control" placeholder="Заголовок" value="Вопрос по офферу <?=Html::encode($model->title)?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Ticket[message]">Ваш вопрос?</label>
+                                            <textarea style="height: 160px;" class="form-control" id="comment" name="Ticket[message]" ></textarea>
+                                        </div>
+                                        <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
+                                        <!--                                        --><?//= Html::submitButton('Отправить', ['class' => 'btn btn-primary btn-gradient']) ?>
+                                        <button class="btn btn-primary btn-gradient" type="submit"> Отправить </button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?}?>
 
             </div>
         </div>

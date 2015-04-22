@@ -68,7 +68,7 @@ class OfferController extends Controller
 
 
     public function actionStatistic($id){
-        if(\Yii::$app->user->can('advertboard'))
+        if(\Yii::$app->user->can('advertiser'))
             $statistic= Statistic::find()->where(['offer_id'=>$id])->all();
         else
             $statistic= Statistic::find()->where(['offer_id'=>$id,'user_ref_id'=>\Yii::$app->user->getId()])->all();
